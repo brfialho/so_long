@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/18 19:16:37 by brfialho         ###   ########.fr       */
+/*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
+/*   Updated: 2025/10/18 19:14:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef MAIN_H
+ #define MAIN_H
 
-int	main(void)
-{
-	void	*mlx = mlx_init();
-	void	*mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	mlx_loop(mlx);
+#include "libft/headers/libft.h"
+#include "mlx.h"
 
-	free(mlx_win);
-	free(mlx);
-}
+#endif

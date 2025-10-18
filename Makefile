@@ -2,7 +2,7 @@ CC = cc -Werror -Wextra -Wall
 
 MLX_INCLUDES = -Imlx/
 
-DEPENDENCIES = lXext -lX11 -lm -lz
+DEPENDENCIES = -lXext -lX11 -lm -lz
 
 SRC = main.c
 
@@ -20,7 +20,7 @@ LIBMLX = $(LIBMLX_PATH)libmlx_Linux.a
 all: $(LIBFT) $(LIBMLX) $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(LIBFT) $(LIBMLX) $(DEPENDENCIES) -o $(MLX_INCLUDES) $(NAME)
+	@$(CC) $(OBJ) $(LIBFT) $(LIBMLX) $(DEPENDENCIES) $(MLX_INCLUDES) -o $(NAME)
 	@echo -n "\033[32m\nSuccessfully Generated \033[0mSo Long \n\n"
 
 $(O_DIR)%.o: %.c
