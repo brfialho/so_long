@@ -1,20 +1,26 @@
-CC= cc -Werror -Wextra -Wall
+CC = cc -Werror -Wextra -Wall
 
-SRC= main.c
+MLX_INCLUDES = -Imlx/
 
+DEPENDENCIES = lXext -lX11 -lm -lz
 
-O_DIR= obj/
-OBJ= $(SRC:%.c=$(O_DIR)%.o)
+SRC = main.c
 
-NAME= so_long
+O_DIR = obj/
+OBJ = $(SRC:%.c=$(O_DIR)%.o)
 
-LIBFT= libft/libft.a
-LIBPATH= libft/
+NAME = so_long
 
-all: $(LIBFT) $(NAME)
+LIBPATH = libft/
+LIBFT= $(LIBPATH)libft.a
+
+LIBMLX_PATH = mlx/
+LIBMLX = $(LIBMLX_PATH)libmlx_Linux.a
+
+all: $(LIBFT) $(LIBMLX) $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBFT) $(LIBMLX) $(DEPENDENCIES) -o $(MLX_INCLUDES) $(NAME)
 	@echo -n "\033[32m\nSuccessfully Generated \033[0mSo Long \n\n"
 
 $(O_DIR)%.o: %.c
@@ -24,7 +30,10 @@ $(O_DIR)%.o: %.c
 	@$(CC) -c $< -o $@
 
 $(LIBFT):
-	@make --no-print-directory -C $(LIBPATH) printf
+	@make --no-print-directory -C $(LIBPATH)
+
+$(LIBMLX):
+	@make --no-print-directory -C $(LIBMLX_PATH)
 
 clean:
 	@echo "\033[95mCleansing So Long Objects"
@@ -36,6 +45,7 @@ clean:
 	@echo ".\033[0m"
 	@sleep 0.2
 	@make --no-print-directory -C $(LIBPATH) clean
+	@make --no-print-directory -C $(LIBMLX_PATH) clean
 	@rm -rf $(O_DIR)
 
 fclean:
@@ -48,6 +58,7 @@ fclean:
 	@echo ".\033[0m"
 	@sleep 0.2
 	@make --no-print-directory -C $(LIBPATH) fclean
+	@make --no-print-directory -C $(LIBMLX_PATH) clean
 	@rm -rf $(O_DIR)
 	@rm -f $(NAME)
 
