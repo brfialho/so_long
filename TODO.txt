@@ -1,0 +1,19 @@
+# Learn permitted functions
+
+# Read map from argv
+
+# Validate map
+
+# Understand basic functionality of mlx
+
+# Add Opening and closing of window
+
+# Search sprites
+
+# Map image
+
+# Quest items
+
+# Player
+
+# Enemies
