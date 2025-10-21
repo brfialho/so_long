@@ -2,6 +2,8 @@ CC = cc -Werror -Wextra -Wall
 
 MLX_INCLUDES = -Imlx/
 
+LIBFT_INCLUDES = -Ilibft/headers/
+
 DEPENDENCIES = -lXext -lX11 -lm -lz
 
 SRC = main.c
@@ -9,25 +11,25 @@ SRC = main.c
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)
 
-NAME = so_long
-
 LIBPATH = libft/
 LIBFT= $(LIBPATH)libft.a
 
 LIBMLX_PATH = mlx/
 LIBMLX = $(LIBMLX_PATH)libmlx_Linux.a
 
+NAME = so_long
+
 all: $(LIBFT) $(LIBMLX) $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(LIBFT) $(LIBMLX) $(DEPENDENCIES) $(MLX_INCLUDES) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBFT) $(LIBMLX) $(DEPENDENCIES) -o $(NAME)
 	@echo -n "\033[32m\nSuccessfully Generated \033[0mSo Long \n\n"
 
 $(O_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo "\033[95mCompiling\033[0m $(notdir $<)"
 	@sleep 0.0001
-	@$(CC) -c $< -o $@
+	@$(CC) $(MLX_INCLUDES) $(LIBFT_INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@make --no-print-directory -C $(LIBPATH)
