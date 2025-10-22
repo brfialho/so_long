@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 18:06:18 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:46:59 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@
 // 	ft_tab_free_content(&map);
 // }
 
-void	error_handler(int fd)
+void	parser_error_handler(int fd, char **split)
 {
 	if (fd)
 		close(fd);
-	ft_printf("Error\n");
+	if (split)
+		ft_split_free(split);
+	ft_printf("Error in parsing\n");
 	exit(1);
 }
 
@@ -90,7 +92,13 @@ int	is_rectangular(char **split)
 			return (FALSE);
 	return (TRUE);
 }
-
+void	map_init(t_tab *map, char **split)
+{
+	map->tab = (void **)split;
+	map->element_size = sizeof(char);
+	map->rows = ft_split_len(split);
+	map->cols = ft_strlen(split[0]);
+}
 
 void	parsing(t_tab *map, char *map_file)
 {
@@ -98,22 +106,17 @@ void	parsing(t_tab *map, char *map_file)
 	char	**lines;
 
 	if (!valid_file_name(map_file))
-		error_handler(0);
-
+		parser_error_handler(0, NULL);
 	fd = open(map_file, O_RDONLY);	
 	if (fd == -1)
-		error_handler(0);
-
+		parser_error_handler(0, NULL);
 	lines = read_lines(fd);
 	if (!lines)
-		error_handler(fd);
-
+		parser_error_handler(fd, NULL);
 	if (!is_rectangular(lines))
-		error_handler(fd);
-	// ft_split_print(lines);
-	// ft_split_free(lines);
+		parser_error_handler(fd, lines);
+	map_init(map, lines);
 	close(fd);
-	(void)map;
 }
 
 
@@ -122,9 +125,13 @@ int	main(int argc, char **argv)
 	t_tab map;
 
 	if (argc != 2)
-		return (1);
+		return (ft_printf("Wrong number of arguments\n"));
 
 	parsing(&map, argv[1]);
+	ft_split_print((char **)map.tab);
+
+	
+	ft_split_free((char **)map.tab);
 }
 
 
