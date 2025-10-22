@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 20:09:42 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:41:25 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,35 @@ void	check_size(t_tab *map)
 		validator_error_handler(map);
 }
 
+int	valid_count(t_char_counter counter)
+{
+	if (counter.c_count < 1)
+		return (FALSE);
+	if (counter.e_count != 1 || counter.p_count != 1)
+		return (FALSE);
+	return (TRUE);
+}
+
 void	check_chars(t_tab *map)
 {
-	size_t	i;
+	t_char_counter	counter;
+	size_t			i;
 
+	counter.c_count = 0;
+	counter.e_count = 0;
+	counter.p_count = 0;
 	i = 0;
 	while (map->tab[i])
-		if (!ft_str_allinset((const char *)map->tab[i++], VALID_CHARS))
+	{
+		if (!ft_str_allinset((const char *)map->tab[i], VALID_CHARS))
 			validator_error_handler(map);
+		counter.c_count += ft_str_charcount((const char *)map->tab[i], 'C');
+		counter.e_count += ft_str_charcount((const char *)map->tab[i], 'E');
+		counter.p_count += ft_str_charcount((const char *)map->tab[i], 'P');
+		i++;
+	}
+	if (!valid_count(counter))
+		validator_error_handler(map);
 }
 
 void	validation(t_tab *map)

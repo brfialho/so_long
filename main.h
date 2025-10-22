@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 20:11:22 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:16:49 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,12 @@
 # include <fcntl.h>
 # include <string.h>
 # include <sys/time.h>
+
+typedef struct s_char_counter
+{
+	size_t	c_count;
+	size_t	e_count;
+	size_t	p_count;
+}	t_char_counter;
 
 #endif
