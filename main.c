@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 20:41:25 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:45:31 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,19 @@ void	check_chars(t_tab *map)
 		validator_error_handler(map);
 }
 
+void	check_borders(t_tab *map)
+{
+	check_row();
+	check_row();
+	check_col();
+	check_col();
+}
+
 void	validation(t_tab *map)
 {
 	check_size(map);
 	check_chars(map);
+	check_borders(map);
 }
 
 
