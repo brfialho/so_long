@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 15:54:17 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 18:06:18 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	error_handler(int fd)
 {
 	if (fd)
 		close(fd);
+	ft_printf("Error\n");
 	exit(1);
 }
 
@@ -77,10 +78,19 @@ char	**read_lines(int fd)
 	return (free(buffer), lines);
 }
 
-// char	**read_lines(int fd)
-// {
-// 	char **lines = ft_calloc ()
-// }
+int	is_rectangular(char **split)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = ft_strlen(split[i]);
+	while (split[i])
+		if (ft_strlen(split[i++]) != len)
+			return (FALSE);
+	return (TRUE);
+}
+
 
 void	parsing(t_tab *map, char *map_file)
 {
@@ -98,8 +108,10 @@ void	parsing(t_tab *map, char *map_file)
 	if (!lines)
 		error_handler(fd);
 
-	ft_split_print(lines);
-	ft_split_free(lines);
+	if (!is_rectangular(lines))
+		error_handler(fd);
+	// ft_split_print(lines);
+	// ft_split_free(lines);
 	close(fd);
 	(void)map;
 }
