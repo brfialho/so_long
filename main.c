@@ -6,32 +6,11 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 18:46:59 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 19:00:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-// int	main(int argc, char **argv)
-// {
-// 	if (argc != 2)
-// 		return (ft_printf("Error\n"));
-
-// 	int fd = open(argv[1], O_RDONLY);
-
-// 	if (fd < 0)
-// 		return (ft_printf("Error : %s\n", strerror(errno)));
-
-// 	t_tab	map;
-// 	if (!ft_tab_innit_empty(&map, 5, 15, sizeof(char)))
-// 		return (1);
-// 	int i = -1;
-// 	while ((map.tab[++i] = get_next_line(fd)))
-// 		;
-// 	for (int j = 0; j < i; j++)
-// 		ft_printf("LINE: %d LEN: %s", ft_strlen(map.tab[j]), map.tab[j]);
-// 	ft_tab_free_content(&map);
-// }
 
 void	parser_error_handler(int fd, char **split)
 {
@@ -119,6 +98,30 @@ void	parsing(t_tab *map, char *map_file)
 	close(fd);
 }
 
+void	validator_error_handler(t_tab *map)
+{
+	ft_split_free((char **)map->tab);
+	ft_printf("Invalid Map\n");
+	exit(1);
+}
+
+void	check_size(t_tab *map)
+{
+	if (map->rows < 3 || map->rows < 3)
+		validator_error_handler(map);
+}
+// void	check_chars(t_tab *map)
+// {
+	
+// }
+
+
+void	validation(t_tab *map)
+{
+	check_size(map);
+	// check_chars(map);
+}
+
 
 int	main(int argc, char **argv)
 {
@@ -128,15 +131,15 @@ int	main(int argc, char **argv)
 		return (ft_printf("Wrong number of arguments\n"));
 
 	parsing(&map, argv[1]);
+	validation(&map);
+	
 	ft_split_print((char **)map.tab);
 
-	
 	ft_split_free((char **)map.tab);
 }
 
 
-
-// check rectangular
+// check size
 // check chars
 // check borders
 // check number of exit, start, collect

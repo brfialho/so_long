@@ -1,6 +1,6 @@
 # Learn permitted functions | DONE
 
-# Read map from argv
+# Read map from argv | DONE
 
 # Validate map
 
