@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 19:32:38 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 20:09:42 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	check_chars(t_tab *map)
 
 	i = 0;
 	while (map->tab[i])
-		if (!ft_str_allinset((const char *)map->tab[i++], "01CEP"))
+		if (!ft_str_allinset((const char *)map->tab[i++], VALID_CHARS))
 			validator_error_handler(map);
 }
 
