@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 15:48:56 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:54:17 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	parsing(t_tab *map, char *map_file)
 	if (!lines)
 		error_handler(fd);
 
+	ft_split_print(lines);
 	ft_split_free(lines);
 	close(fd);
 	(void)map;
