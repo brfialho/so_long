@@ -6,29 +6,118 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 14:27:55 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:48:56 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+// int	main(int argc, char **argv)
+// {
+// 	if (argc != 2)
+// 		return (ft_printf("Error\n"));
+
+// 	int fd = open(argv[1], O_RDONLY);
+
+// 	if (fd < 0)
+// 		return (ft_printf("Error : %s\n", strerror(errno)));
+
+// 	t_tab	map;
+// 	if (!ft_tab_innit_empty(&map, 5, 15, sizeof(char)))
+// 		return (1);
+// 	int i = -1;
+// 	while ((map.tab[++i] = get_next_line(fd)))
+// 		;
+// 	for (int j = 0; j < i; j++)
+// 		ft_printf("LINE: %d LEN: %s", ft_strlen(map.tab[j]), map.tab[j]);
+// 	ft_tab_free_content(&map);
+// }
+
+void	error_handler(int fd)
+{
+	if (fd)
+		close(fd);
+	exit(1);
+}
+
+int	valid_file_name(char *s)
+{
+	size_t len;
+
+	len = ft_strlen(s);
+	if (len < 5)
+		return (FALSE);
+	if (ft_strncmp(s + len - 4, ".ber", 4))
+		return (FALSE);
+	len -= 4;
+	while (len)
+		if (s[len-- - 1] == '.')
+			return (FALSE);
+	return(TRUE);
+}
+
+char	**read_lines(int fd)
+{
+	char	**lines;
+	char	*buffer;
+	char	*gnl;
+
+	buffer = NULL;
+	gnl = get_next_line(fd);
+	while (gnl)
+	{
+		buffer = ft_strjoin_free(buffer, gnl);
+		if (!buffer)
+			return (NULL);
+		gnl = get_next_line(fd);
+	}
+	lines = ft_split(buffer, '\n');
+	if (!lines)
+		return (free(buffer), NULL);
+	return (free(buffer), lines);
+}
+
+// char	**read_lines(int fd)
+// {
+// 	char **lines = ft_calloc ()
+// }
+
+void	parsing(t_tab *map, char *map_file)
+{
+	int		fd;
+	char	**lines;
+
+	if (!valid_file_name(map_file))
+		error_handler(0);
+
+	fd = open(map_file, O_RDONLY);	
+	if (fd == -1)
+		error_handler(0);
+
+	lines = read_lines(fd);
+	if (!lines)
+		error_handler(fd);
+
+	ft_split_free(lines);
+	close(fd);
+	(void)map;
+}
+
+
 int	main(int argc, char **argv)
 {
+	t_tab map;
+
 	if (argc != 2)
-		return (ft_printf("Error\n"));
-
-	int fd = open(argv[1], O_RDONLY);
-
-	if (fd < 0)
-		return (ft_printf("Error : %s\n", strerror(errno)));
-	
-	t_tab	map;
-	if (!ft_tab_innit_empty(&map, 5, 15, sizeof(char)))
 		return (1);
-	int i = -1;
-	while ((map.tab[++i] = get_next_line(fd)))
-		;
-	for (int j = 0; j < i; j++)
-		ft_printf("LINE: %d LEN: %s", ft_strlen(map.tab[j]), map.tab[j]);
-	ft_tab_free_content(&map);
+
+	parsing(&map, argv[1]);
 }
+
+
+
+// check rectangular
+// check chars
+// check borders
+// check number of exit, start, collect
+// check route
