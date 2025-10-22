@@ -1,4 +1,4 @@
-# Learn permitted functions
+# Learn permitted functions | DONE
 
 # Read map from argv
 
