@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 19:00:21 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 19:27:04 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,22 @@ void	check_size(t_tab *map)
 	if (map->rows < 3 || map->rows < 3)
 		validator_error_handler(map);
 }
-// void	check_chars(t_tab *map)
-// {
-	
-// }
+
+void	check_chars(t_tab *map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map->tab[i])
+		if (!ft_str_allinset((const char *)map->tab[i++], "01CEP"))
+			validator_error_handler(map);
+}
 
 
 void	validation(t_tab *map)
 {
 	check_size(map);
-	// check_chars(map);
+	check_chars(map);
 }
 
 
@@ -129,7 +135,6 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_printf("Wrong number of arguments\n"));
-
 	parsing(&map, argv[1]);
 	validation(&map);
 	
@@ -139,8 +144,8 @@ int	main(int argc, char **argv)
 }
 
 
-// check size
 // check chars
 // check borders
+// one of exit, start
 // check number of exit, start, collect
 // check route
