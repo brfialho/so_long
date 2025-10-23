@@ -8,7 +8,13 @@ SOLONG_INCLUDES = -Iincludes/
 
 DEPENDENCIES = -lXext -lX11 -lm -lz
 
-SRC = src/main.c
+SRC = src/main.c \
+		src/parsing/is_rectangular.c \
+		src/parsing/map_init.c \
+		src/parsing/parser_error_handler.c \
+		src/parsing/parser.c \
+		src/parsing/read_lines.c \
+		src/parsing/valid_file_name.c 
 
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)

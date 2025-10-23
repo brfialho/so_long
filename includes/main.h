@@ -6,17 +6,19 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 14:10:27 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:00:36 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
  #define MAIN_H
 
+// Macros
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01CEP"
 # endif
 
+// Includes
 # include "libft.h"
 # include "mlx.h"
 # include <stdio.h>
@@ -25,6 +27,7 @@
 # include <string.h>
 # include <sys/time.h>
 
+// Structs
 typedef struct s_char_counter
 {
 	size_t	c_count;
@@ -37,6 +40,19 @@ typedef struct s_position
 	size_t	row;
 	size_t	col;
 }	t_position;
+
+//Functions
+
+// Map parsing
+int		is_rectangular(char **split);
+void	map_init(t_tab *map, char **split);
+void	parser_error_handler(int fd, char **split);
+void	parser(t_tab *map, char *map_file);
+char	**read_lines(int fd);
+int		valid_file_name(char *s);
+
+// Map validation
+
 
 
 #endif
