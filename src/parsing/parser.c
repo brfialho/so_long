@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:53:31 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 19:13:18 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:11:16 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parser(t_tab *map, char *map_file)
 		parser_error_handler(0, NULL, READ);
 	lines = read_lines(fd);
 	if (!lines)
-		parser_error_handler(fd, NULL, MEMORY);
+		parser_error_handler(fd, NULL, EMPTY);
 	if (!is_rectangular(lines))
 		parser_error_handler(fd, lines, RECTANGULAR);
 	map_init(map, lines);

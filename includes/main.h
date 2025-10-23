@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 19:11:01 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:11:37 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum
 	USAGE,
 	NAME,
 	READ,
+	EMPTY,
 	RECTANGULAR,
 	SIZE,
 	BORDER,

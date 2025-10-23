@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:55:09 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 19:28:27 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:12:20 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	parser_error_handler(int fd, char **split, e_error error)
 		ft_printf("Error\nInvalid file name\n");
 	if (error == READ)
 		ft_printf("Error\nCould not read file\n");
+	if (error == EMPTY)
+		ft_printf("Error\nInvalid Map : empty file\n");
 	if (error == RECTANGULAR)
 		ft_printf("Error\nInvalid Map : not valid a matrix\n");
 	exit(1);

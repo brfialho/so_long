@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:55:43 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 17:56:02 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 20:10:18 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	**read_lines(int fd)
 
 	buffer = NULL;
 	gnl = get_next_line(fd);
+	if (!gnl)
+		return (NULL);
 	while (gnl)
 	{
 		buffer = ft_strjoin_free(buffer, gnl);
