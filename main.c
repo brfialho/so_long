@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 21:13:46 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:20:20 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,4 @@ int	main(int argc, char **argv)
 }
 
 
-// check chars
-// check borders
-// one of exit, start
-// check number of exit, start, collect
 // check route
