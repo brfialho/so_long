@@ -14,7 +14,15 @@ SRC = src/main.c \
 		src/parsing/parser_error_handler.c \
 		src/parsing/parser.c \
 		src/parsing/read_lines.c \
-		src/parsing/valid_file_name.c 
+		src/parsing/valid_file_name.c \
+		src/validation/check_borders_col.c \
+		src/validation/check_borders_row.c \
+		src/validation/check_chars.c \
+		src/validation/check_size.c \
+		src/validation/check_valid_path.c \
+		src/validation/validator_error_handler.c \
+		src/validation/validator.c 
+
 
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)

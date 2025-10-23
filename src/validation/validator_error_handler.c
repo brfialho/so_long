@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   validator_error_handler.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:19:25 by brfialho         ###   ########.fr       */
+/*   Created: 2025/10/23 18:03:18 by brfialho          #+#    #+#             */
+/*   Updated: 2025/10/23 18:03:29 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	main(int argc, char **argv)
+void	validator_error_handler(t_tab *map)
 {
-	t_tab map;
-
-	if (argc != 2)
-		return (ft_printf("Wrong number of arguments\n"));
-	parser(&map, argv[1]);
-	validator(&map);
-	ft_split_print((char **)map.tab);
-
-	ft_split_free((char **)map.tab);
+	ft_split_free((char **)map->tab);
+	ft_printf("Invalid Map\n");
+	exit(1);
 }
-

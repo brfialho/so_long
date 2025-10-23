@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:00:36 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:21:03 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ int		valid_file_name(char *s);
 
 // Map validation
 
-
+void	check_borders_col(t_tab *map);
+void	check_borders_row(t_tab *map);
+void	check_chars(t_tab *map, t_char_counter *counter);
+void	check_size(t_tab *map);
+void	check_valid_path(t_tab *map, t_char_counter counter);
+void	validator_error_handler(t_tab *map);
+void	validator(t_tab *map);
 
 #endif

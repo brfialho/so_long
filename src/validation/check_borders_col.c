@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_borders_col.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:19:25 by brfialho         ###   ########.fr       */
+/*   Created: 2025/10/23 18:11:22 by brfialho          #+#    #+#             */
+/*   Updated: 2025/10/23 18:12:55 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	main(int argc, char **argv)
+void	check_borders_col(t_tab *map)
 {
-	t_tab map;
+	size_t	row;
+	size_t	col;
 
-	if (argc != 2)
-		return (ft_printf("Wrong number of arguments\n"));
-	parser(&map, argv[1]);
-	validator(&map);
-	ft_split_print((char **)map.tab);
-
-	ft_split_free((char **)map.tab);
+	row = 0;
+	col = 0;
+	while (row < map->rows)
+		if (((char **)map->tab)[row++][col] != '1')
+			validator_error_handler(map);
+	row = 0;
+	col = map->cols - 1;
+	while (row < map->rows)
+		if (((char **)map->tab)[row++][col] != '1')
+			validator_error_handler(map);
 }
-
