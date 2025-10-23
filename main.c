@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 21:20:20 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 15:20:56 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	valid_count(t_char_counter counter)
 	return (TRUE);
 }
 
-void	check_chars(t_tab *map)
+t_char_counter	check_chars(t_tab *map)
 {
 	t_char_counter	counter;
 	size_t			i;
@@ -140,6 +140,7 @@ void	check_chars(t_tab *map)
 	}
 	if (!valid_count(counter))
 		validator_error_handler(map);
+	return (counter);
 }
 void	check_borders_row(t_tab *map)
 {
@@ -175,12 +176,51 @@ void check_borders_col(t_tab *map)
 			validator_error_handler(map);
 }
 
+int	path_solver(t_tab *dup, int row, int col, t_char_counter *reachable)
+{
+	if (((char**)dup->tab)[row][col] == 'E')
+		reachable->e_count++;
+	if (((char**)dup->tab)[row][col] == 'C')
+		reachable->c_count++;
+	if (((char**)dup->tab)[row][col] == '1')
+		return (FALSE);
+	((char**)dup->tab)[row][col] = '1';
+	if (path_solver(dup, row - 1, col, reachable)
+		|| path_solver(dup, row, col + 1, reachable)
+		|| path_solver(dup, row + 1, col, reachable)
+		|| path_solver(dup, row, col - 1, reachable))
+		return (TRUE);
+	((char**)dup->tab)[row][col] = '0';
+	return (FALSE);
+}
+
+
+void	check_valid_path(t_tab *map, t_char_counter counter)
+{
+	t_tab			*dup;
+	t_char_counter	reachable;
+
+	dup = ft_tab_dup(*map);
+	if (!dup)
+		validator_error_handler(map);
+	reachable.c_count = 0;
+	reachable.e_count = 0;
+	path_solver(dup, 3, 1, &reachable);
+	ft_tab_free(dup);
+	if (reachable.c_count != counter.c_count
+		|| reachable.e_count != counter.c_count)
+		validator_error_handler(map);
+}
+
 void	validation(t_tab *map)
 {
+	t_char_counter	counter;
+
 	check_size(map);
-	check_chars(map);
 	check_borders_row(map);
 	check_borders_col(map);
+	counter = check_chars(map);
+	check_valid_path(map, counter);
 }
 
 

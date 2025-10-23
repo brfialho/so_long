@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 20:16:49 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 14:10:27 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,12 @@ typedef struct s_char_counter
 	size_t	e_count;
 	size_t	p_count;
 }	t_char_counter;
+
+typedef struct s_position
+{
+	size_t	row;
+	size_t	col;
+}	t_position;
+
 
 #endif
