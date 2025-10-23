@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:21:03 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:47:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01CEP"
 # endif
+
+typedef enum
+{
+	MEMORY,
+	PARSE,
+	SIZE,
+	BORDER,
+	CHARS,
+	COUNT,
+	PATH
+} e_error;
+
 
 // Includes
 # include "libft.h"
@@ -58,7 +70,7 @@ void	check_borders_row(t_tab *map);
 void	check_chars(t_tab *map, t_char_counter *counter);
 void	check_size(t_tab *map);
 void	check_valid_path(t_tab *map, t_char_counter counter);
-void	validator_error_handler(t_tab *map);
+void	validator_error_handler(t_tab *map, e_error error);
 void	validator(t_tab *map);
 
 #endif

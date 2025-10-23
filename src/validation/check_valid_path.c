@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:14:31 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:18:22 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:45:08 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	check_valid_path(t_tab *map, t_char_counter counter)
 	player_finder(*map, &player_pos);
 	dup = ft_tab_dup(*map);
 	if (!dup)
-		validator_error_handler(map);
+		validator_error_handler(map, MEMORY);
 	path_solver(dup, player_pos.row, player_pos.col, &reachable);
 	ft_tab_free(dup);
 	if (reachable.c_count != counter.c_count || !reachable.e_count)
-		validator_error_handler(map);
+		validator_error_handler(map, PATH);
 }
 
 static void	player_finder(t_tab map, t_position* pos)

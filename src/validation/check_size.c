@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:04:16 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:04:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:42:46 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	check_size(t_tab *map)
 {
 	if (map->rows < 3 || map->cols < 3)
-		validator_error_handler(map);
+		validator_error_handler(map, SIZE);
 }

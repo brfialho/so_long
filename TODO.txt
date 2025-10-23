@@ -2,7 +2,7 @@
 
 # Read map from argv | DONE
 
-# Validate map
+# Validate map | DONE
 
 # Understand basic functionality of mlx
 
