@@ -4,9 +4,11 @@ MLX_INCLUDES = -Imlx/
 
 LIBFT_INCLUDES = -Ilibft/headers/
 
+SOLONG_INCLUDES = -Iincludes/
+
 DEPENDENCIES = -lXext -lX11 -lm -lz
 
-SRC = main.c
+SRC = src/main.c
 
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)
@@ -29,7 +31,7 @@ $(O_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo "\033[95mCompiling\033[0m $(notdir $<)"
 	@sleep 0.0001
-	@$(CC) $(MLX_INCLUDES) $(LIBFT_INCLUDES) -c $< -o $@
+	@$(CC) $(MLX_INCLUDES) $(LIBFT_INCLUDES) $(SOLONG_INCLUDES) -c $< -o $@
 
 $(LIBFT):
 	@make --no-print-directory -C $(LIBPATH)
