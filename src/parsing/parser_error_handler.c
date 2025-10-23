@@ -6,18 +6,27 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 17:55:09 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 17:55:20 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:11:50 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	parser_error_handler(int fd, char **split)
+void	parser_error_handler(int fd, char **split, e_error error)
 {
 	if (fd)
 		close(fd);
 	if (split)
 		ft_split_free(split);
-	ft_printf("Error in parsing\n");
+	if (error == MEMORY)
+		ft_printf("Error\nNot enough memory\n");
+	if (error == USAGE)
+		ft_printf("Error\nUsage: ./so_long <map_file.ber>\n");
+	if (error == NAME)
+		ft_printf("Error\nInvalid file name\n");
+	if (error == READ)
+		ft_printf("Error\nCould not read file\n");
+	if (error == RECTANGULAR)
+		ft_printf("Error\nInvalid Map : not a matrix\n");
 	exit(1);
 }

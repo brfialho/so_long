@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:47:58 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:11:01 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 typedef enum
 {
 	MEMORY,
-	PARSE,
+	USAGE,
+	NAME,
+	READ,
+	RECTANGULAR,
 	SIZE,
 	BORDER,
 	CHARS,
@@ -58,7 +61,7 @@ typedef struct s_position
 // Map parsing
 int		is_rectangular(char **split);
 void	map_init(t_tab *map, char **split);
-void	parser_error_handler(int fd, char **split);
+void	parser_error_handler(int fd, char **split, e_error error);
 void	parser(t_tab *map, char *map_file);
 char	**read_lines(int fd);
 int		valid_file_name(char *s);
