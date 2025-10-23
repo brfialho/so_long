@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 15:20:56 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:22:10 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	validator_error_handler(t_tab *map)
 
 void	check_size(t_tab *map)
 {
-	if (map->rows < 3 || map->rows < 3)
+	if (map->rows < 3 || map->cols < 3)
 		validator_error_handler(map);
 }
 
@@ -176,7 +176,7 @@ void check_borders_col(t_tab *map)
 			validator_error_handler(map);
 }
 
-int	path_solver(t_tab *dup, int row, int col, t_char_counter *reachable)
+int	path_solver(t_tab *dup, size_t row, size_t col, t_char_counter *reachable)
 {
 	if (((char**)dup->tab)[row][col] == 'E')
 		reachable->e_count++;
@@ -190,25 +190,49 @@ int	path_solver(t_tab *dup, int row, int col, t_char_counter *reachable)
 		|| path_solver(dup, row + 1, col, reachable)
 		|| path_solver(dup, row, col - 1, reachable))
 		return (TRUE);
-	((char**)dup->tab)[row][col] = '0';
 	return (FALSE);
 }
-
+void	get_start_player_pos(t_tab map, t_position* pos)
+{
+	size_t	row;
+	size_t	col;
+	
+	row = 0;
+	col = 0;
+	while (row < map.rows)
+	{	
+		col = 0;
+		while (col < map.cols)
+		{
+			if (((char **)map.tab)[row][col] == 'P')
+				{
+					pos->row = row;
+					pos->col = col;
+					return ;
+				}
+			col++;
+		}
+		row++;
+	}
+}
 
 void	check_valid_path(t_tab *map, t_char_counter counter)
 {
 	t_tab			*dup;
+	t_position		player_pos;
 	t_char_counter	reachable;
 
+	
+	reachable.c_count = 0;
+	reachable.e_count = 0;
+	get_start_player_pos(*map, &player_pos);
 	dup = ft_tab_dup(*map);
 	if (!dup)
 		validator_error_handler(map);
-	reachable.c_count = 0;
-	reachable.e_count = 0;
-	path_solver(dup, 3, 1, &reachable);
+	path_solver(dup, player_pos.row, player_pos.col, &reachable);
 	ft_tab_free(dup);
 	if (reachable.c_count != counter.c_count
-		|| reachable.e_count != counter.c_count)
+		|| reachable.e_count != counter.e_count)
 		validator_error_handler(map);
 }
 
@@ -232,7 +256,6 @@ int	main(int argc, char **argv)
 		return (ft_printf("Wrong number of arguments\n"));
 	parsing(&map, argv[1]);
 	validation(&map);
-	
 	ft_split_print((char **)map.tab);
 
 	ft_split_free((char **)map.tab);
