@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 19:11:41 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:15:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_tab map;
+	t_tab	map;
 
 	if (argc != 2)
 		parser_error_handler(0, NULL, USAGE);
@@ -24,4 +24,3 @@ int	main(int argc, char **argv)
 
 	ft_split_free((char **)map.tab);
 }
-

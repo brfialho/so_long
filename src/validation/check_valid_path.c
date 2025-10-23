@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:14:31 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:45:08 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:17:29 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void	player_finder(t_tab map, t_position* pos);
+static void	player_finder(t_tab map, t_position *pos);
 static int	path_solver(t_tab *dup, size_t row, size_t col, t_char_counter *reachable);
 
 void	check_valid_path(t_tab *map, t_char_counter counter)
@@ -33,11 +33,11 @@ void	check_valid_path(t_tab *map, t_char_counter counter)
 		validator_error_handler(map, PATH);
 }
 
-static void	player_finder(t_tab map, t_position* pos)
+static void	player_finder(t_tab map, t_position *pos)
 {
 	size_t	row;
 	size_t	col;
-	
+
 	row = 0;
 	col = 0;
 	while (row < map.rows)
@@ -46,16 +46,17 @@ static void	player_finder(t_tab map, t_position* pos)
 		while (col < map.cols)
 		{
 			if (((char **)map.tab)[row][col] == 'P')
-				{
-					pos->row = row;
-					pos->col = col;
-					return ;
-				}
+			{
+				pos->row = row;
+				pos->col = col;
+				return ;
+			}
 			col++;
 		}
 		row++;
 	}
 }
+
 static int	path_solver(t_tab *dup, size_t row, size_t col, t_char_counter *reachable)
 {
 	if (((char**)dup->tab)[row][col] == 'E')
