@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/22 20:45:31 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/22 21:13:46 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,20 +141,46 @@ void	check_chars(t_tab *map)
 	if (!valid_count(counter))
 		validator_error_handler(map);
 }
-
-void	check_borders(t_tab *map)
+void	check_borders_row(t_tab *map)
 {
-	check_row();
-	check_row();
-	check_col();
-	check_col();
+	size_t	row;
+	size_t	col;
+
+	row = 0;
+	col = 0;
+	while (col < map->cols)
+		if (((char **)map->tab)[row][col++] != '1')
+			validator_error_handler(map);
+	row = map->rows - 1;
+	col = 0;
+	while (col < map->cols)
+		if (((char **)map->tab)[row][col++] != '1')
+			validator_error_handler(map);
+}
+
+void check_borders_col(t_tab *map)
+{
+	size_t	row;
+	size_t	col;
+
+	row = 0;
+	col = 0;
+	while (row < map->rows)
+		if (((char **)map->tab)[row++][col] != '1')
+			validator_error_handler(map);
+	row = 0;
+	col = map->cols - 1;
+	while (row < map->rows)
+		if (((char **)map->tab)[row++][col] != '1')
+			validator_error_handler(map);
 }
 
 void	validation(t_tab *map)
 {
 	check_size(map);
 	check_chars(map);
-	check_borders(map);
+	check_borders_row(map);
+	check_borders_col(map);
 }
 
 
