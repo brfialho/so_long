@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 17:22:10 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:44:04 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,27 +120,25 @@ int	valid_count(t_char_counter counter)
 	return (TRUE);
 }
 
-t_char_counter	check_chars(t_tab *map)
+void	check_chars(t_tab *map, t_char_counter *counter)
 {
-	t_char_counter	counter;
 	size_t			i;
 
-	counter.c_count = 0;
-	counter.e_count = 0;
-	counter.p_count = 0;
+	counter->c_count = 0;
+	counter->e_count = 0;
+	counter->p_count = 0;
 	i = 0;
 	while (map->tab[i])
 	{
 		if (!ft_str_allinset((const char *)map->tab[i], VALID_CHARS))
 			validator_error_handler(map);
-		counter.c_count += ft_str_charcount((const char *)map->tab[i], 'C');
-		counter.e_count += ft_str_charcount((const char *)map->tab[i], 'E');
-		counter.p_count += ft_str_charcount((const char *)map->tab[i], 'P');
+		counter->c_count += ft_str_charcount((const char *)map->tab[i], 'C');
+		counter->e_count += ft_str_charcount((const char *)map->tab[i], 'E');
+		counter->p_count += ft_str_charcount((const char *)map->tab[i], 'P');
 		i++;
 	}
-	if (!valid_count(counter))
+	if (!valid_count(*counter))
 		validator_error_handler(map);
-	return (counter);
 }
 void	check_borders_row(t_tab *map)
 {
@@ -192,7 +190,7 @@ int	path_solver(t_tab *dup, size_t row, size_t col, t_char_counter *reachable)
 		return (TRUE);
 	return (FALSE);
 }
-void	get_start_player_pos(t_tab map, t_position* pos)
+void	player_finder(t_tab map, t_position* pos)
 {
 	size_t	row;
 	size_t	col;
@@ -222,17 +220,15 @@ void	check_valid_path(t_tab *map, t_char_counter counter)
 	t_position		player_pos;
 	t_char_counter	reachable;
 
-	
 	reachable.c_count = 0;
 	reachable.e_count = 0;
-	get_start_player_pos(*map, &player_pos);
+	player_finder(*map, &player_pos);
 	dup = ft_tab_dup(*map);
 	if (!dup)
 		validator_error_handler(map);
 	path_solver(dup, player_pos.row, player_pos.col, &reachable);
 	ft_tab_free(dup);
-	if (reachable.c_count != counter.c_count
-		|| reachable.e_count != counter.e_count)
+	if (reachable.c_count != counter.c_count || !reachable.e_count)
 		validator_error_handler(map);
 }
 
@@ -243,7 +239,7 @@ void	validation(t_tab *map)
 	check_size(map);
 	check_borders_row(map);
 	check_borders_col(map);
-	counter = check_chars(map);
+	check_chars(map, &counter);
 	check_valid_path(map, counter);
 }
 
