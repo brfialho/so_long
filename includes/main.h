@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 20:11:37 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:12:38 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_position
 int		is_rectangular(char **split);
 void	map_init(t_tab *map, char **split);
 void	parser_error_handler(int fd, char **split, e_error error);
-void	parser(t_tab *map, char *map_file);
+void	parser(t_tab *map, int argc, char **argv);
 char	**read_lines(int fd);
 int		valid_file_name(char *s);
 
