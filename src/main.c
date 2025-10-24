@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 20:09:40 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:07:22 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	main(int argc, char **argv)
 	validator(&map);
 	ft_split_print((char **)map.tab);
 
-	ft_split_free((char **)map.tab);
+	ft_tab_free_content(&map);
 }

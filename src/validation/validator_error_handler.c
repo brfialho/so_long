@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:03:18 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:51:07 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/24 16:07:41 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	validator_error_handler(t_tab *map, e_error error)
 {
-	ft_split_free((char **)map->tab);
+	ft_tab_free_content(map);
 	if (error == MEMORY)
 		ft_printf("Error\nNot enough memory\n");
 	if (error == SIZE)
