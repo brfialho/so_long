@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/24 16:12:38 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:45:51 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 // Macros
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01CEP"
+# endif
+
+# ifndef WIDTH 
+#  define WIDTH 1920
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 1080
 # endif
 
 typedef enum

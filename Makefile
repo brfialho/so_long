@@ -8,7 +8,8 @@ SOLONG_INCLUDES = -Iincludes/
 
 DEPENDENCIES = -lXext -lX11 -lm -lz
 
-SRC = src/main.c \
+SRC = 		minilib_learning.c
+#src/main.c \
 		src/parsing/is_rectangular.c \
 		src/parsing/map_init.c \
 		src/parsing/parser_error_handler.c \
@@ -21,7 +22,7 @@ SRC = src/main.c \
 		src/validation/check_size.c \
 		src/validation/check_valid_path.c \
 		src/validation/validator_error_handler.c \
-		src/validation/validator.c 
+		src/validation/validator.c
 
 
 O_DIR = obj/
