@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/24 22:21:16 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/24 22:24:27 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,6 @@ int	main(void)
 
 	mlx_loop(mlx);
 }
+
+// 	Organize structs
+//  try hooks
