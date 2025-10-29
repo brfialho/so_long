@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/24 17:45:51 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/28 20:55:01 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # ifndef HEIGHT
 #  define HEIGHT 1080
+# endif
+
+# ifndef ESC
+#  define ESC 65307
 # endif
 
 typedef enum
