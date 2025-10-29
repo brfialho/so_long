@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/28 21:48:24 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:27:10 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_mlx_img{
 typedef struct	s_mlx {
 	t_mlx_img	img;
 	void		*mlx_ptr;
-	void		*window;
+	void		*win_ptr;
 }				t_mlx;
 
 void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
@@ -39,7 +39,7 @@ void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
 int	free_mlx(t_mlx *mlx, int exit_program)
 {
 	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->window);
+	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
 	if (exit_program)
@@ -52,11 +52,38 @@ unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b)
 	return ((unsigned int)r << 16 | g << 8 | b);
 }
 
+void	full_color(t_mlx mlx)
+{
+	printf("W: %d H :%d\n", mlx.img.width, mlx.img.height);
+	static unsigned char r = 0, g = 0, b = 0;
+
+	r += 255;
+	g += 63;
+	b += 127;
+	for (int y = 0; y < mlx.img.height - 1; y++)
+		for (int x = 0; x < mlx.img.width - 1; x++)
+			pixel_put(&mlx.img, x, y, get_rgb(r, g, b));
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
+}
+
 int	key_press(int keycode, t_mlx *mlx)
 {
 	if (keycode == ESC)
 		return (free_mlx(mlx, TRUE));
+	if (keycode == 'W' || keycode == 'w')
+		return (full_color(*mlx), 0);
 	return (0);
+}
+
+int	mouse_press(int button, int x, int y, t_mlx *mlx)
+{
+	printf("X: %d Y: %d \nW: %d H :%d\n", x, y, mlx->img.width, mlx->img.height);
+	if (x >= mlx->img.width || y >= mlx->img.height)
+		return (0);
+	pixel_put(&mlx->img, x, y, get_rgb(255, 0 ,0));
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
+	return (0);
+	(void)button;
 }
 
 // int	mouse_on_screen(int x, int y, t_mlx *mlx)
@@ -72,45 +99,48 @@ int	key_press(int keycode, t_mlx *mlx)
 // }
 
 
+// typedef struct  s_t{
+// 	int x;
+// 	int y;
+// } t_t;
+
+// typedef struct  s_teste{
+// 	int a;
+// 	t_t t;
+// }t_teste;
+
+
+// void teste(t_teste t)
+// {
+// 	printf ("AAA %d %d %d\n", t.a, t.t.x, t.t.y);
+// }
 int	main(void)
 {
 	t_mlx mlx;
 
-	mlx.img.width = 100;
-	mlx.img.height = 100;
+	mlx.img.width = 800;
+	mlx.img.height = 600;
 
 	mlx.mlx_ptr = mlx_init();
-	mlx.window = mlx_new_window(mlx.mlx_ptr, WIDTH, HEIGHT, "Hello world!");
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.img.width, mlx.img.height, "Hello world!");
 
-	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, WIDTH, HEIGHT);
-	mlx.img.addr = mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bits_per_pixel, &mlx.img.size_line,&mlx.img.endian);
-	for (int y = 0; y < mlx.img.height - 1; y++)
-		for (int x = 0; x < mlx.img.width - 1; x++)
-			pixel_put(&mlx.img, x, y, get_rgb(0, 0, 255));
-	for (int y = 0; y < mlx.img.height - 1; y++)
-		for (int x = 0; x < mlx.img.width - 1; x++)
-			pixel_put(&mlx.img, x + 50, y, get_rgb(255, 0, 0));
-			// if (!x)
-	        // 	my_mlx_pixel_put(&img, x, y, c++);
-			// else if (!y)
-	        // 	my_mlx_pixel_put(&img, x, y, c = c + c);
-			// else if (x == 100 - 1)
-	        // 	my_mlx_pixel_put(&img, x, y, c = c + 256);
-			// else if (y == 100 - 1)
-	        // 	my_mlx_pixel_put(&img, x, y, c = c + 127);
-			// else
-			// 	my_mlx_pixel_put(&img, x, y, c = c + c + c);
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.window, mlx.img.img_ptr, (WIDTH - mlx.img.width) / 2, (HEIGHT - mlx.img.height) / 2);
+	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, mlx.img.width, mlx.img.height);
+	mlx.img.addr = mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bits_per_pixel, &mlx.img.size_line, &mlx.img.endian);
 
-	mlx_hook(mlx.window, 2, 1L << 0, key_press, &mlx);
-	// mlx_hook(mlx.window, 7, 1L << 4, mouse_on_screen, &mlx);
-
-	for (int y = 0; y < mlx.img.height - 1; y++)
-		for (int x = 0; x < mlx.img.width - 1; x++)
-			pixel_put(&mlx.img, x + 50, y, get_rgb(0, 255, 0));
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.window, mlx.img.img_ptr, (WIDTH - mlx.img.width) / 2, (HEIGHT - mlx.img.height) / 2);
+	full_color(mlx);
+	
+	mlx_hook(mlx.win_ptr, 2, 1L << 0, key_press, &mlx);
+	mlx_hook(mlx.win_ptr, 4, 1L << 2, mouse_press, &mlx);
 	mlx_loop(mlx.mlx_ptr);
+
+	// t_teste t;
+	// t.a = 10;
+	// t.t.x = 20;
+	// t.t.y = 30;
+	// teste (t);
 }
 
 // 	Organize structs
+
+
 //  try hooks
