@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 20:08:08 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:43:34 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_mlx {
 	void			*win_ptr;
 	struct timeval	key_press_time[ASCII];
 	unsigned char	key_is_pressed[ASCII];
+	t_position		square;
 }				t_mlx;
 
 void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
@@ -67,6 +68,19 @@ void	full_color(t_mlx mlx)
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
 }
 
+void	move_square(t_mlx *mlx, unsigned char direction)
+{
+	if (direction == 1)
+		mlx->square.row -= 10;
+	if (direction == 2)
+		mlx->square.col -= 10;
+	if (direction == 3)
+		mlx->square.row += 10 ;
+	if (direction == 4)
+		mlx->square.col += 10;
+}
+
+
 int	key_press(int keycode, t_mlx *mlx)
 {
 	struct timeval	now;
@@ -87,7 +101,13 @@ int	key_press(int keycode, t_mlx *mlx)
 		if (keycode == ESC)
 			return (free_mlx(mlx, TRUE));
 		if (keycode == 'W' || keycode == 'w')
-			return (full_color(*mlx), 0);
+			return (move_square(mlx, 1), 0);
+		if (keycode == 'A' || keycode == 'A')
+			return (move_square(mlx, 2), 0);
+		if (keycode == 'S' || keycode == 's')
+			return (move_square(mlx, 3), 0);
+		if (keycode == 'D' || keycode == 'd')
+			return (move_square(mlx, 4), 0);
 	}
 	return (0);
 }
@@ -124,6 +144,15 @@ int	mouse_out(int x, int y, t_mlx *mlx)
 	(void)y;
 }
 
+int	render_square(t_mlx *mlx)
+{
+	for (int y = 0; y < 50; y++)
+		for (int x = 0; x < 50; x++)
+			pixel_put(mlx->img.img_ptr, x, y, get_rgb(255, 0, 0));
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
+	return (0);	
+}
+
 int	main(void)
 {
 	t_mlx mlx;
@@ -133,13 +162,16 @@ int	main(void)
 	ft_bzero(mlx.key_is_pressed, sizeof(mlx.key_is_pressed));
 	ft_bzero(mlx.key_press_time, sizeof(mlx.key_press_time));
 
+	mlx.square.row = 400;
+	mlx.square.col = 300;
+
 	mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.img.width, mlx.img.height, "Hello world!");
 
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, mlx.img.width, mlx.img.height);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bits_per_pixel, &mlx.img.size_line, &mlx.img.endian);
 
-	full_color(mlx);
+	// full_color(mlx);
 	
 	mlx_hook(mlx.win_ptr, 2, 1L << 0, key_press, &mlx);
 	// mlx_hook(mlx.win_ptr, 3, 1L << 3, key_release, &mlx);
@@ -148,6 +180,7 @@ int	main(void)
 	mlx_hook(mlx.win_ptr, 17, 1L << 17, window_destoy, &mlx);
 	mlx_hook(mlx.win_ptr, 7, 1L << 4, mouse_in, &mlx);
 	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
+	mlx_loop_hook(mlx.mlx_ptr, render_square, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }
 
