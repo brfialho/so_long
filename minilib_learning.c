@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 16:27:10 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 17:39:35 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct	s_mlx {
 	t_mlx_img	img;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	struct timeval time;
+	unsigned char keys_pressed[127];
 }				t_mlx;
 
 void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
@@ -54,7 +56,6 @@ unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b)
 
 void	full_color(t_mlx mlx)
 {
-	printf("W: %d H :%d\n", mlx.img.width, mlx.img.height);
 	static unsigned char r = 0, g = 0, b = 0;
 
 	r += 255;
@@ -68,6 +69,9 @@ void	full_color(t_mlx mlx)
 
 int	key_press(int keycode, t_mlx *mlx)
 {
+	keycode = (unsigned char)keycode;
+	gettimeofday(&mlx->time, NULL);
+	// mlx->keys_pressed[keycode] = 1;
 	if (keycode == ESC)
 		return (free_mlx(mlx, TRUE));
 	if (keycode == 'W' || keycode == 'w')
@@ -75,15 +79,47 @@ int	key_press(int keycode, t_mlx *mlx)
 	return (0);
 }
 
+// int	key_release(int keycode, t_mlx *mlx)
+// {
+// 	long	tmp;
+
+// 	tmp = (long)mlx->time.tv_sec;
+// 	gettimeofday(&mlx->time, NULL);
+// 	if ((long)mlx->time.tv_sec - tmp > 3)
+// 		ft_printf("SO LONG\n");
+// 	return (0);
+// 	(void)keycode;
+// }
+
 int	mouse_press(int button, int x, int y, t_mlx *mlx)
 {
-	printf("X: %d Y: %d \nW: %d H :%d\n", x, y, mlx->img.width, mlx->img.height);
 	if (x >= mlx->img.width || y >= mlx->img.height)
 		return (0);
 	pixel_put(&mlx->img, x, y, get_rgb(255, 0 ,0));
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
 	return (0);
 	(void)button;
+}
+
+int	window_destoy(t_mlx *mlx)
+{
+	return (free_mlx(mlx, TRUE));
+}
+
+int	mouse_in(int x, int y, t_mlx *mlx)
+{
+	return(printf("HELLO\n"));
+	(void)mlx;
+	(void)x;
+	(void)y;
+}
+
+int	mouse_out(int x, int y, t_mlx *mlx)
+{
+	return(printf("BYE\n"));
+	(void)mlx;
+	(void)x;
+	(void)y;
 }
 
 // int	mouse_on_screen(int x, int y, t_mlx *mlx)
@@ -130,7 +166,12 @@ int	main(void)
 	full_color(mlx);
 	
 	mlx_hook(mlx.win_ptr, 2, 1L << 0, key_press, &mlx);
+	// mlx_hook(mlx.win_ptr, 3, 1L << 3, key_release, &mlx);
+	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
 	mlx_hook(mlx.win_ptr, 4, 1L << 2, mouse_press, &mlx);
+	mlx_hook(mlx.win_ptr, 17, 1L << 17, window_destoy, &mlx);
+	mlx_hook(mlx.win_ptr, 7, 1L << 4, mouse_in, &mlx);
+	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 
 	// t_teste t;
