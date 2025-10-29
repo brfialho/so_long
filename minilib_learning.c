@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 17:39:35 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:08:08 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct	s_mlx_img{
 }				t_mlx_img;
 
 typedef struct	s_mlx {
-	t_mlx_img	img;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	struct timeval time;
-	unsigned char keys_pressed[127];
+	t_mlx_img		img;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	struct timeval	key_press_time[ASCII];
+	unsigned char	key_is_pressed[ASCII];
 }				t_mlx;
 
 void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
@@ -69,27 +69,29 @@ void	full_color(t_mlx mlx)
 
 int	key_press(int keycode, t_mlx *mlx)
 {
+	struct timeval	now;
+	long			time_passed;
+
 	keycode = (unsigned char)keycode;
-	gettimeofday(&mlx->time, NULL);
-	// mlx->keys_pressed[keycode] = 1;
-	if (keycode == ESC)
-		return (free_mlx(mlx, TRUE));
-	if (keycode == 'W' || keycode == 'w')
-		return (full_color(*mlx), 0);
+	gettimeofday(&now, NULL);
+
+	time_passed = (now.tv_sec - mlx->key_press_time[keycode].tv_sec) * 1000000
+					+ now.tv_usec - mlx->key_press_time[keycode].tv_usec;
+
+	if (time_passed > 100000)
+		mlx->key_is_pressed[keycode] = FALSE;
+	if (!mlx->key_is_pressed[keycode])
+	{
+		mlx->key_press_time[keycode] = now;
+		mlx->key_is_pressed[keycode] = TRUE;
+		if (keycode == ESC)
+			return (free_mlx(mlx, TRUE));
+		if (keycode == 'W' || keycode == 'w')
+			return (full_color(*mlx), 0);
+	}
 	return (0);
 }
 
-// int	key_release(int keycode, t_mlx *mlx)
-// {
-// 	long	tmp;
-
-// 	tmp = (long)mlx->time.tv_sec;
-// 	gettimeofday(&mlx->time, NULL);
-// 	if ((long)mlx->time.tv_sec - tmp > 3)
-// 		ft_printf("SO LONG\n");
-// 	return (0);
-// 	(void)keycode;
-// }
 
 int	mouse_press(int button, int x, int y, t_mlx *mlx)
 {
@@ -122,40 +124,14 @@ int	mouse_out(int x, int y, t_mlx *mlx)
 	(void)y;
 }
 
-// int	mouse_on_screen(int x, int y, t_mlx *mlx)
-// {
-// 	for (int a = 0; a < mlx->img.height - 1; a++)
-// 		for (int b = 0; b < mlx->img.width - 1; b++)
-// 			pixel_put(&mlx->img, b, a, get_rgb(0, 0, 255));
-// 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->window, mlx->img.img_ptr, 
-// 							(WIDTH - mlx->img.width) / 2, (HEIGHT - mlx->img.height) / 2);
-// 	(void)x;
-// 	(void)y;
-// 	return (0);
-// }
-
-
-// typedef struct  s_t{
-// 	int x;
-// 	int y;
-// } t_t;
-
-// typedef struct  s_teste{
-// 	int a;
-// 	t_t t;
-// }t_teste;
-
-
-// void teste(t_teste t)
-// {
-// 	printf ("AAA %d %d %d\n", t.a, t.t.x, t.t.y);
-// }
 int	main(void)
 {
 	t_mlx mlx;
 
 	mlx.img.width = 800;
 	mlx.img.height = 600;
+	ft_bzero(mlx.key_is_pressed, sizeof(mlx.key_is_pressed));
+	ft_bzero(mlx.key_press_time, sizeof(mlx.key_press_time));
 
 	mlx.mlx_ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, mlx.img.width, mlx.img.height, "Hello world!");
@@ -173,15 +149,7 @@ int	main(void)
 	mlx_hook(mlx.win_ptr, 7, 1L << 4, mouse_in, &mlx);
 	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
 	mlx_loop(mlx.mlx_ptr);
-
-	// t_teste t;
-	// t.a = 10;
-	// t.t.x = 20;
-	// t.t.y = 30;
-	// teste (t);
 }
 
 // 	Organize structs
 
-
-//  try hooks

@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 17:20:05 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 20:02:39 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 
 # ifndef ESC
 #  define ESC 27
+# endif
+
+# ifndef ASCII
+#  define ASCII 256
 # endif
 
 typedef enum
