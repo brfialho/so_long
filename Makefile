@@ -12,7 +12,7 @@ SRC = src/main.c \
 		src/parsing/is_rectangular.c \
 		src/parsing/map_init.c \
 		src/parsing/parser_error_handler.c \
-		src/parsing/parser.c \
+		src/parsing/map_parser.c \
 		src/parsing/read_lines.c \
 		src/parsing/valid_file_name.c \
 		src/validation/check_borders_col.c \
@@ -21,7 +21,7 @@ SRC = src/main.c \
 		src/validation/check_size.c \
 		src/validation/check_valid_path.c \
 		src/validation/validator_error_handler.c \
-		src/validation/validator.c \
+		src/validation/map_validator.c \
 		src/mlx_utils/destroy_mlx.c \
 		src/mlx_utils/get_rgb.c \
 		src/mlx_utils/pixel_put.c

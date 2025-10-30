@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 17:19:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:24:50 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_game
 int		is_rectangular(char **split);
 void	map_init(t_tab *map, char **split);
 void	parser_error_handler(int fd, char **split, e_error error);
-void	parser(t_tab *map, int argc, char **argv);
+void	map_parser(t_tab *map, int argc, char **argv);
 char	**read_lines(int fd);
 int		valid_file_name(char *s);
 
@@ -117,7 +117,7 @@ void	check_chars(t_tab *map, t_char_counter *counter);
 void	check_size(t_tab *map);
 void	check_valid_path(t_tab *map, t_char_counter counter);
 void	validator_error_handler(t_tab *map, e_error error);
-void	validator(t_tab *map);
+void	map_validator(t_tab *map);
 
 // MLX utils
 
