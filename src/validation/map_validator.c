@@ -12,13 +12,12 @@
 
 #include "main.h"
 
-void	map_validator(t_tab *map)
+void	map_validator(t_game *game)
 {
-	t_char_counter	counter;
 
-	check_size(map);
-	check_borders_row(map);
-	check_borders_col(map);
-	check_chars(map, &counter);
-	check_valid_path(map, counter);
+	check_size(&game->map);
+	check_borders_row(&game->map);
+	check_borders_col(&game->map);
+	check_chars(&game->map, &game->obj);
+	check_valid_path(&game->map, game->obj, &game->player);
 }

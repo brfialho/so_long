@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 19:33:43 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 20:11:42 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_game
 	t_tab		map;
 	t_mlx		mlx;
 	t_position	player;
+	t_char_counter obj;
 }				t_game;
 
 //Functions
@@ -121,11 +122,11 @@ int		valid_file_name(char *s);
 
 void	check_borders_col(t_tab *map);
 void	check_borders_row(t_tab *map);
-void	check_chars(t_tab *map, t_char_counter *counter);
+void	check_chars(t_tab *map, t_char_counter *obj);
 void	check_size(t_tab *map);
-void	check_valid_path(t_tab *map, t_char_counter counter);
+void	check_valid_path(t_tab *map, t_char_counter obj, t_position *player);
 void	validator_error_handler(t_tab *map, e_error error);
-void	map_validator(t_tab *map);
+void	map_validator(t_game *game);
 
 // MLX utils
 

@@ -6,36 +6,12 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 19:44:52 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 20:14:24 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-
-static void	player_finder(t_tab map, t_position *pos)
-{
-	size_t	row;
-	size_t	col;
-
-	row = 0;
-	col = 0;
-	while (row < map.rows)
-	{	
-		col = 0;
-		while (col < map.cols)
-		{
-			if (((char **)map.tab)[row][col] == 'P')
-			{
-				pos->row = row;
-				pos->col = col;
-				return ;
-			}
-			col++;
-		}
-		row++;
-	}
-}
 
 void	init_game_data(t_game *game)
 {
@@ -181,14 +157,14 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	map_parser(&game.map, argc, argv);
-	map_validator(&game.map);
+	map_validator(&game);
 	
 	ft_split_print((char **)game.map.tab);
 
-	init_game(&game);
+	// init_game(&game);
 
-	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
-	mlx_loop(game.mlx.mlx_ptr);
+	// mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
+	// mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
+	// mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
+	// mlx_loop(game.mlx.mlx_ptr);
 }
