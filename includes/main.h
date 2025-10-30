@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 20:11:42 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 20:34:23 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,11 @@ typedef struct	s_mlx
 
 typedef struct s_game
 {
-	t_tab		map;
-	t_mlx		mlx;
-	t_position	player;
-	t_char_counter obj;
+	t_tab			map;
+	t_mlx			mlx;
+	t_position		player;
+	t_position		exit;
+	t_char_counter	obj;
 }				t_game;
 
 //Functions
