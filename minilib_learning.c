@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 20:43:34 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/29 21:47:28 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,16 @@ unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b)
 
 void	full_color(t_mlx mlx)
 {
-	static unsigned char r = 0, g = 0, b = 0;
+	// static unsigned char r = 0, g = 0, b = 0;
 
-	r += 255;
-	g += 63;
-	b += 127;
-	for (int y = 0; y < mlx.img.height - 1; y++)
-		for (int x = 0; x < mlx.img.width - 1; x++)
-			pixel_put(&mlx.img, x, y, get_rgb(r, g, b));
+	// r += 255;
+	// g += 63;
+	// b += 127;
+	for (int y = 0; y < mlx.img.height; y++)
+		for (int x = 0; x < mlx.img.width; x++)
+			pixel_put(&mlx.img, x, y, get_rgb(0, 0, 0));
 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img.img_ptr, 0, 0);
 }
-
-void	move_square(t_mlx *mlx, unsigned char direction)
-{
-	if (direction == 1)
-		mlx->square.row -= 10;
-	if (direction == 2)
-		mlx->square.col -= 10;
-	if (direction == 3)
-		mlx->square.row += 10 ;
-	if (direction == 4)
-		mlx->square.col += 10;
-}
-
 
 int	key_press(int keycode, t_mlx *mlx)
 {
@@ -91,8 +78,7 @@ int	key_press(int keycode, t_mlx *mlx)
 
 	time_passed = (now.tv_sec - mlx->key_press_time[keycode].tv_sec) * 1000000
 					+ now.tv_usec - mlx->key_press_time[keycode].tv_usec;
-
-	if (time_passed > 100000)
+	if (time_passed > 10000)
 		mlx->key_is_pressed[keycode] = FALSE;
 	if (!mlx->key_is_pressed[keycode])
 	{
@@ -101,26 +87,20 @@ int	key_press(int keycode, t_mlx *mlx)
 		if (keycode == ESC)
 			return (free_mlx(mlx, TRUE));
 		if (keycode == 'W' || keycode == 'w')
-			return (move_square(mlx, 1), 0);
-		if (keycode == 'A' || keycode == 'A')
-			return (move_square(mlx, 2), 0);
+			// return (move_square(mlx, 1), 0);
+			mlx->square.row -= 10;
+		if (keycode == 'A' || keycode == 'a')
+			// return (move_square(mlx, 2), 0);
+			mlx->square.col -= 10;
 		if (keycode == 'S' || keycode == 's')
-			return (move_square(mlx, 3), 0);
+			// return (move_square(mlx, 3), 0);
+			mlx->square.row += 10;
 		if (keycode == 'D' || keycode == 'd')
-			return (move_square(mlx, 4), 0);
+			// return (move_square(mlx, 4), 0);
+			mlx->square.col += 10;
 	}
+	printf("KEY IS PRESSED:%u %hhu\n", keycode, mlx->key_is_pressed[keycode]);
 	return (0);
-}
-
-
-int	mouse_press(int button, int x, int y, t_mlx *mlx)
-{
-	if (x >= mlx->img.width || y >= mlx->img.height)
-		return (0);
-	pixel_put(&mlx->img, x, y, get_rgb(255, 0 ,0));
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
-	return (0);
-	(void)button;
 }
 
 int	window_destoy(t_mlx *mlx)
@@ -128,27 +108,12 @@ int	window_destoy(t_mlx *mlx)
 	return (free_mlx(mlx, TRUE));
 }
 
-int	mouse_in(int x, int y, t_mlx *mlx)
-{
-	return(printf("HELLO\n"));
-	(void)mlx;
-	(void)x;
-	(void)y;
-}
-
-int	mouse_out(int x, int y, t_mlx *mlx)
-{
-	return(printf("BYE\n"));
-	(void)mlx;
-	(void)x;
-	(void)y;
-}
-
 int	render_square(t_mlx *mlx)
 {
-	for (int y = 0; y < 50; y++)
-		for (int x = 0; x < 50; x++)
-			pixel_put(mlx->img.img_ptr, x, y, get_rgb(255, 0, 0));
+	full_color(*mlx);
+	for (int y = 0; y < 40; y++)
+		for (int x = 0; x < 40; x++)
+			pixel_put(&mlx->img, mlx->square.col + x, mlx->square.row + y, get_rgb(255, 0, 0));
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img_ptr, 0, 0);
 	return (0);	
 }
@@ -170,16 +135,10 @@ int	main(void)
 
 	mlx.img.img_ptr = mlx_new_image(mlx.mlx_ptr, mlx.img.width, mlx.img.height);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img_ptr, &mlx.img.bits_per_pixel, &mlx.img.size_line, &mlx.img.endian);
-
-	// full_color(mlx);
 	
 	mlx_hook(mlx.win_ptr, 2, 1L << 0, key_press, &mlx);
 	// mlx_hook(mlx.win_ptr, 3, 1L << 3, key_release, &mlx);
-	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
-	mlx_hook(mlx.win_ptr, 4, 1L << 2, mouse_press, &mlx);
 	mlx_hook(mlx.win_ptr, 17, 1L << 17, window_destoy, &mlx);
-	mlx_hook(mlx.win_ptr, 7, 1L << 4, mouse_in, &mlx);
-	mlx_hook(mlx.win_ptr, 8, 1L << 5, mouse_out, &mlx);
 	mlx_loop_hook(mlx.mlx_ptr, render_square, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 }

@@ -4,9 +4,9 @@
 
 # Validate map | DONE
 
-# Understand basic functionality of mlx
+# Add Opening and closing of window | DONE
 
-# Add Opening and closing of window
+# Understand basic functionality of mlx
 
 # Search sprites
 
