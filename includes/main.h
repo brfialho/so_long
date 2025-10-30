@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 20:02:39 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:19:23 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,32 @@ typedef struct s_position
 	size_t	col;
 }	t_position;
 
+typedef struct	s_mlx_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}				t_mlx_img;
+
+typedef struct	s_mlx
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_mlx_img		img;
+	int				height;
+	int				width;
+	struct timeval	key_press_time[ASCII];
+	unsigned char	key_is_pressed[ASCII];
+}				t_mlx;
+
+typedef struct s_game
+{
+	t_tab	map;
+	t_mlx	mlx;
+}				t_game;
+
 //Functions
 
 // Map parsing
@@ -92,5 +118,11 @@ void	check_size(t_tab *map);
 void	check_valid_path(t_tab *map, t_char_counter counter);
 void	validator_error_handler(t_tab *map, e_error error);
 void	validator(t_tab *map);
+
+// MLX utils
+
+int				destroy_mlx(t_mlx *mlx, int exit_program);
+unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b);
+void			pixel_put(t_mlx_img *img, int x, int y, unsigned int color);
 
 #endif

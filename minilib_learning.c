@@ -6,54 +6,19 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/29 21:47:28 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 17:17:11 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-typedef struct	s_mlx_img{
-	void	*img_ptr;
-	char	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-	int		height;
-	int		width;
-}				t_mlx_img;
 
-typedef struct	s_mlx {
-	t_mlx_img		img;
-	void			*mlx_ptr;
-	void			*win_ptr;
-	struct timeval	key_press_time[ASCII];
-	unsigned char	key_is_pressed[ASCII];
-	t_position		square;
-}				t_mlx;
 
-void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color)
-{
-	char	*dst;
 
-	dst = img->addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
 
-int	free_mlx(t_mlx *mlx, int exit_program)
-{
-	mlx_destroy_image(mlx->mlx_ptr, mlx->img.img_ptr);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
-	if (exit_program)
-		exit(0);
-	return (0);
-}
 
-unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b)
-{
-	return ((unsigned int)r << 16 | g << 8 | b);
-}
+
+
 
 void	full_color(t_mlx mlx)
 {
