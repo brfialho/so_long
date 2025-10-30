@@ -6,18 +6,44 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 19:20:28 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:44:52 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	init_mlx_data(t_game *game)
+
+static void	player_finder(t_tab map, t_position *pos)
+{
+	size_t	row;
+	size_t	col;
+
+	row = 0;
+	col = 0;
+	while (row < map.rows)
+	{	
+		col = 0;
+		while (col < map.cols)
+		{
+			if (((char **)map.tab)[row][col] == 'P')
+			{
+				pos->row = row;
+				pos->col = col;
+				return ;
+			}
+			col++;
+		}
+		row++;
+	}
+}
+
+void	init_game_data(t_game *game)
 {
 	game->mlx.height = (int)game->map.rows * 32;
 	game->mlx.width = (int)game->map.cols * 32;
 	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
 	ft_bzero(game->mlx.key_press_time, sizeof(game->mlx.key_press_time));
+	player_finder(game->map, &game->player);
 }
 
 int	init_mlx_display(t_mlx	*mlx)
@@ -48,8 +74,7 @@ int	destroy_game(t_game *game)
 
 void	init_game(t_game *game)
 {
-	// init_game_data(game);
-	init_mlx_data(game);
+	init_game_data(game);
 	if (!init_mlx_display(&game->mlx))
 		destroy_game(game);
 }
@@ -101,6 +126,55 @@ int	game_logic(t_game	*game)
 	return (0);
 }
 
+void	move_player(t_game *game, e_direction d)
+{
+	t_position	new_pos;
+
+	new_pos = game->player;
+	if (d == UP)
+		new_pos.row--;
+	if (d == RIGHT)
+		new_pos.col++;
+	if (d == DOWN)
+		new_pos.row++;
+	if (d == LEFT)
+		new_pos.col--;
+	if (((char **)game->map.tab)[new_pos.row][new_pos.col] == '1')
+		return ;
+	((char **)game->map.tab)[new_pos.row][new_pos.col] = 'P';
+	((char **)game->map.tab)[game->player.row][game->player.col] = '0';
+	game->player = new_pos;
+}
+
+int	key_press(int keycode, t_game *game)
+{
+	struct timeval	now;
+	long			time_passed;
+
+	keycode = (unsigned char)keycode;
+	gettimeofday(&now, NULL);
+
+	time_passed = (now.tv_sec - game->mlx.key_press_time[keycode].tv_sec) * 1000000
+					+ now.tv_usec - game->mlx.key_press_time[keycode].tv_usec;
+	if (time_passed > 10000)
+		game->mlx.key_is_pressed[keycode] = FALSE;
+	if (!game->mlx.key_is_pressed[keycode])
+	{
+		game->mlx.key_press_time[keycode] = now;
+		game->mlx.key_is_pressed[keycode] = TRUE;
+		if (keycode == ESC)
+			return (destroy_game(game));
+		if (keycode == 'W' || keycode == 'w')
+			move_player(game, UP);
+		if (keycode == 'A' || keycode == 'a')
+			move_player(game, LEFT);
+		if (keycode == 'S' || keycode == 's')
+			move_player(game, DOWN);
+		if (keycode == 'D' || keycode == 'd')
+			move_player(game, RIGHT);
+	}
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -113,7 +187,7 @@ int	main(int argc, char **argv)
 
 	init_game(&game);
 
-
+	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
 	mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
 	mlx_loop(game.mlx.mlx_ptr);

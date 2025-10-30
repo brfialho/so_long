@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 18:14:50 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 19:33:43 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef enum
 	PATH
 } e_error;
 
+typedef enum
+{
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT
+} e_direction;
 
 // Includes
 # include "libft.h"
@@ -95,8 +102,9 @@ typedef struct	s_mlx
 
 typedef struct s_game
 {
-	t_tab	map;
-	t_mlx	mlx;
+	t_tab		map;
+	t_mlx		mlx;
+	t_position	player;
 }				t_game;
 
 //Functions
