@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:50:08 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:41:06 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ void	map_validator(t_game *game);
 // MLX utils
 
 int				destroy_mlx(t_mlx *mlx, int win, int img);
+void			ft_usleep(long usec);
 unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b);
 void			pixel_put(t_mlx_img *img, int x, int y, unsigned int color);
 

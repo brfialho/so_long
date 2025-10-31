@@ -8,25 +8,26 @@ SOLONG_INCLUDES = -Iincludes/
 
 DEPENDENCIES = -lXext -lX11 -lm -lz
 
-SRC = minilib_learning.c
+# SRC = minilib_learning.c
 
-# SRC = src/main.c \
-# 		src/parsing/is_rectangular.c \
-# 		src/parsing/map_init.c \
-# 		src/parsing/parser_error_handler.c \
-# 		src/parsing/map_parser.c \
-# 		src/parsing/read_lines.c \
-# 		src/parsing/valid_file_name.c \
-# 		src/validation/check_borders_col.c \
-# 		src/validation/check_borders_row.c \
-# 		src/validation/check_chars.c \
-# 		src/validation/check_size.c \
-# 		src/validation/check_valid_path.c \
-# 		src/validation/validator_error_handler.c \
-# 		src/validation/map_validator.c \
-# 		src/mlx_utils/destroy_mlx.c \
-# 		src/mlx_utils/get_rgb.c \
-# 		src/mlx_utils/pixel_put.c
+SRC = src/main.c \
+		src/parsing/is_rectangular.c \
+		src/parsing/map_init.c \
+		src/parsing/parser_error_handler.c \
+		src/parsing/map_parser.c \
+		src/parsing/read_lines.c \
+		src/parsing/valid_file_name.c \
+		src/validation/check_borders_col.c \
+		src/validation/check_borders_row.c \
+		src/validation/check_chars.c \
+		src/validation/check_size.c \
+		src/validation/check_valid_path.c \
+		src/validation/validator_error_handler.c \
+		src/validation/map_validator.c \
+		src/mlx_utils/destroy_mlx.c \
+		src/mlx_utils/ft_usleep.c \
+		src/mlx_utils/get_rgb.c \
+		src/mlx_utils/pixel_put.c
 
 
 O_DIR = obj/
