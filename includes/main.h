@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 17:41:06 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:53:00 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ typedef struct	s_mlx
 	int				height;
 	int				width;
 	struct timeval	key_press_time[ASCII];
-	unsigned char	key_is_pressed[ASCII];
+	int	key_is_pressed[ASCII];
 }				t_mlx;
 
 typedef struct s_game

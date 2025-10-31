@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:51:58 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:13:48 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,32 +115,66 @@ void	move_player(t_game *game, t_pos next_pos)
 	game->player = next_pos;
 }
 
-int	key_press(int keycode, t_game *game)
-{
-	struct timeval	now;
-	long			time_passed;
+// int	key_press(int keycode, t_game *game)
+// {
+// 	struct timeval	now;
+// 	long			time_passed;
 
-	keycode = (unsigned char)keycode;
-	gettimeofday(&now, NULL);
-	time_passed = (now.tv_sec - game->mlx.key_press_time[keycode].tv_sec) * 1000000
-					+ now.tv_usec - game->mlx.key_press_time[keycode].tv_usec;
-	if (time_passed > 10000)
-		game->mlx.key_is_pressed[keycode] = FALSE;
-	if (!game->mlx.key_is_pressed[keycode])
-	{
-		game->mlx.key_press_time[keycode] = now;
-		game->mlx.key_is_pressed[keycode] = TRUE;
-		if (keycode == ESC)
-			return (destroy_game(game));
-		if (keycode == 'W' || keycode == 'w')
-			move_player(game, (t_pos){game->player.row - 1, game->player.col});
-		if (keycode == 'A' || keycode == 'a')
-			move_player(game, (t_pos){game->player.row, game->player.col - 1});
-		if (keycode == 'S' || keycode == 's')
-			move_player(game, (t_pos){game->player.row + 1, game->player.col});
-		if (keycode == 'D' || keycode == 'd')
-			move_player(game, (t_pos){game->player.row, game->player.col + 1});
-	}
+// 	keycode = (unsigned char)keycode;
+// 	gettimeofday(&now, NULL);
+// 	time_passed = (now.tv_sec - game->mlx.key_press_time[keycode].tv_sec) * 1000000
+// 					+ now.tv_usec - game->mlx.key_press_time[keycode].tv_usec;
+// 	if (time_passed > 10000)
+// 		game->mlx.key_is_pressed[keycode] = FALSE;
+// 	if (!game->mlx.key_is_pressed[keycode])
+// 	{
+// 		game->mlx.key_press_time[keycode] = now;
+// 		game->mlx.key_is_pressed[keycode] = TRUE;
+// 		if (keycode == ESC)
+// 			return (destroy_game(game));
+// 		if (keycode == 'W' || keycode == 'w')
+// 			move_player(game, (t_pos){game->player.row - 1, game->player.col});
+// 		if (keycode == 'A' || keycode == 'a')
+// 			move_player(game, (t_pos){game->player.row, game->player.col - 1});
+// 		if (keycode == 'S' || keycode == 's')
+// 			move_player(game, (t_pos){game->player.row + 1, game->player.col});
+// 		if (keycode == 'D' || keycode == 'd')
+// 			move_player(game, (t_pos){game->player.row, game->player.col + 1});
+// 	}
+// 	return (0);
+// }
+
+int key_press(int keycode, t_game *game)
+{
+	game->mlx.key_is_pressed[(unsigned char)keycode] = TRUE;
+	return (0);
+}
+
+void	all_key_release(t_game *game)
+{
+	int	keycode;
+
+	ft_usleep(30000);
+	keycode = 0;
+	while (keycode < ASCII)
+		game->mlx.key_is_pressed[keycode++] = FALSE;
+}
+
+int	game_logic(t_game *game)
+{
+	if (game->mlx.key_is_pressed[ESC])
+		return (destroy_game(game));
+	printf ("%d\n", game->mlx.key_is_pressed['w']);
+	if (game->mlx.key_is_pressed['W'] || game->mlx.key_is_pressed['w'])
+		move_player(game, (t_pos){game->player.row - 1, game->player.col});
+	if (game->mlx.key_is_pressed['A'] || game->mlx.key_is_pressed['a'])
+		move_player(game, (t_pos){game->player.row, game->player.col - 1});
+	if (game->mlx.key_is_pressed['S'] || game->mlx.key_is_pressed['s'])
+		move_player(game, (t_pos){game->player.row + 1, game->player.col});
+	if (game->mlx.key_is_pressed['D'] || game->mlx.key_is_pressed['d'])
+		move_player(game, (t_pos){game->player.row, game->player.col + 1});
+	all_key_release (game);
+	render_image(game);
 	return (0);
 }
 
@@ -154,9 +188,8 @@ int	main(int argc, char **argv)
 	ft_split_print((char **)game.map.tab);
 
 	init_game(&game);
-
 	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, render_image, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
