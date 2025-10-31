@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 20:34:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:06:23 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ typedef struct s_char_counter
 	size_t	p_count;
 }	t_char_counter;
 
-typedef struct s_position
+typedef struct s_pos
 {
 	size_t	row;
 	size_t	col;
-}	t_position;
+}	t_pos;
 
 typedef struct	s_mlx_img
 {
@@ -104,8 +104,8 @@ typedef struct s_game
 {
 	t_tab			map;
 	t_mlx			mlx;
-	t_position		player;
-	t_position		exit;
+	t_pos		player;
+	t_pos		exit;
 	t_char_counter	obj;
 }				t_game;
 
@@ -125,7 +125,7 @@ void	check_borders_col(t_tab *map);
 void	check_borders_row(t_tab *map);
 void	check_chars(t_tab *map, t_char_counter *obj);
 void	check_size(t_tab *map);
-void	check_valid_path(t_tab *map, t_char_counter obj, t_position *player);
+void	check_valid_path(t_tab *map, t_char_counter obj, t_pos *player, t_pos *exit);
 void	validator_error_handler(t_tab *map, e_error error);
 void	map_validator(t_game *game);
 

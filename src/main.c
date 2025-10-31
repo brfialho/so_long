@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 20:41:54 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:06:15 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_game_data(t_game *game)
 {
 	game->mlx.height = (int)game->map.rows * 32;
 	game->mlx.width = (int)game->map.cols * 32;
-	game->exit = (t_position){0, 0};
 	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
 	ft_bzero(game->mlx.key_press_time, sizeof(game->mlx.key_press_time));
 }
@@ -104,37 +103,33 @@ int	game_logic(t_game	*game)
 
 void	move_player(t_game *game, e_direction d)
 {
-	t_position	new_pos;
+	t_pos	next_pos;
 	char		next_tile;
 
-	new_pos = game->player;
+	next_pos = game->player;
 	if (d == UP)
-		new_pos.row--;
+		next_pos.row--;
 	if (d == RIGHT)
-		new_pos.col++;
+		next_pos.col++;
 	if (d == DOWN)
-		new_pos.row++;
+		next_pos.row++;
 	if (d == LEFT)
-		new_pos.col--;
+		next_pos.col--;
 
-	next_tile = ((char **)game->map.tab)[new_pos.row][new_pos.col];
+	next_tile = ((char **)game->map.tab)[next_pos.row][next_pos.col];
 
 	if (next_tile == '1')
 		return ;
 	if (next_tile == 'C')
 		game->obj.c_count--;
-	if (next_tile == 'E')
-	{
-		game->exit.row = new_pos.row;
-		game->exit.col = new_pos.col;
-		if (!game->obj.c_count)
-			destroy_game(game);
-	}
-	((char **)game->map.tab)[new_pos.row][new_pos.col] = 'P';
+	if (next_tile == 'E'
+		&& !game->obj.c_count)
+		destroy_game(game);
+	((char **)game->map.tab)[next_pos.row][next_pos.col] = 'P';
 	((char **)game->map.tab)[game->player.row][game->player.col] = '0';
 	if (game->player.row == game->exit.row && game->player.col == game->exit.col)
 		((char **)game->map.tab)[game->player.row][game->player.col] = 'E';
-	game->player = new_pos;
+	game->player = next_pos;
 }
 
 int	key_press(int keycode, t_game *game)

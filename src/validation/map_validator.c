@@ -19,5 +19,5 @@ void	map_validator(t_game *game)
 	check_borders_row(&game->map);
 	check_borders_col(&game->map);
 	check_chars(&game->map, &game->obj);
-	check_valid_path(&game->map, game->obj, &game->player);
+	check_valid_path(&game->map, game->obj, &game->player, &game->exit);
 }
