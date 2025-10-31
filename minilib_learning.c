@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 16:19:34 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:11:35 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,14 @@
 
 
 
-int print_pressed(t_mlx *mlx)
-{
-	int x = -1;
-	while (++x < ASCII)
-		if (mlx->key_is_pressed[x])
-			printf("CHAR %c %d\n", (unsigned char)x, mlx->key_is_pressed[x]);
-	return (0);
-}
+// int print_pressed(t_mlx *mlx)
+// {
+// 	int x = -1;
+// 	while (++x < ASCII)
+// 		if (mlx->key_is_pressed[x])
+// 			printf("CHAR %c %d\n", (unsigned char)x, mlx->key_is_pressed[x]);
+// 	return (0);
+// }
 
 // int key_release(int keycode, t_mlx *mlx)
 // {
@@ -170,12 +170,6 @@ int print_pressed(t_mlx *mlx)
 // 	mlx_loop(mlx.mlx_ptr);
 // }
 
-int key_press(int keycode, void *test)
-{
-	printf("ON PRESS -> CHAR: %c\n", (unsigned char)keycode);
-	(void)test;
-	return (0);
-}
 
 int key_release(int keycode, void *test)
 {
@@ -184,13 +178,20 @@ int key_release(int keycode, void *test)
 	return (0);
 }
 
+int key_press(int keycode, void *test)
+{
+	printf("ON PRESS -> CHAR: %c\n", (unsigned char)keycode);
+	(void)test;
+	return (key_release(keycode, test));
+}
+
 int main (void)
 {
 
 	void *mlx = mlx_init();
 	void *win_ptr = mlx_new_window(mlx, 100, 100, "TESTE");
 
-	mlx_hook(win_ptr, 3, 1L << 3, key_release, &mlx);
+	// mlx_hook(win_ptr, 3, 1L << 3, key_release, &mlx);
 	mlx_hook(win_ptr, 2, 1L << 0, key_press, &mlx);
 	mlx_loop(mlx);
 	(void)win_ptr;
