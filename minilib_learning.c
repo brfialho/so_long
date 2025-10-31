@@ -6,11 +6,11 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:29:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 17:21:53 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 16:19:34 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "main.h"
+#include "main.h"
 
 
 
@@ -110,3 +110,88 @@
 
 // 	Organize structs
 
+
+// int	key_press(int keycode, t_mlx *mlx)
+// {
+// 	struct timeval	now;
+// 	long			time_passed;
+
+// 	keycode = (unsigned char)keycode;
+// 	gettimeofday(&now, NULL);
+// 	time_passed = (now.tv_sec - mlx->key_press_time[keycode].tv_sec) * 1000000
+// 					+ now.tv_usec - mlx->key_press_time[keycode].tv_usec;
+// 	printf("TIME: %ld\n", time_passed);
+// 	if (time_passed > 10000)
+// 		mlx->key_is_pressed[keycode] = FALSE;
+// 	if (!mlx->key_is_pressed[keycode])
+// 	{
+// 		mlx->key_press_time[keycode] = now;
+// 		mlx->key_is_pressed[keycode] = TRUE;
+// 	}
+// 	printf("ON PRESS -> CHAR: %c PRESS: %d\n", (unsigned char)keycode, mlx->key_is_pressed[keycode]); 
+// 	return (0);
+// }
+
+
+
+int print_pressed(t_mlx *mlx)
+{
+	int x = -1;
+	while (++x < ASCII)
+		if (mlx->key_is_pressed[x])
+			printf("CHAR %c %d\n", (unsigned char)x, mlx->key_is_pressed[x]);
+	return (0);
+}
+
+// int key_release(int keycode, t_mlx *mlx)
+// {
+	
+// 	mlx->key_is_pressed[(unsigned char)keycode] = FALSE;
+// 	printf("ON RELEASE -> CHAR: %c PRESS: %d\n", (unsigned char)keycode, mlx->key_is_pressed[keycode]); 
+// 	return (0);
+// }
+
+// int main(void)
+// {
+// 	t_mlx mlx;
+
+// 	mlx.mlx_ptr = mlx_init();
+// 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 100, 100, "TESTE");
+// 	ft_bzero(mlx.key_is_pressed, sizeof(mlx.key_is_pressed));
+// 	ft_bzero(mlx.key_press_time, sizeof(mlx.key_is_pressed));
+
+// 	// while (1)
+// 	// 	for(int x = 0; x < ASCII; x++)
+// 	// 		printf("%d %d\n", mlx.key_is_pressed[x], x);
+
+// 	mlx_hook(mlx.win_ptr, 3, 1L << 3, key_release, &mlx);
+// 	// mlx_hook(mlx.win_ptr, 2, 1L << 0, key_press, &mlx);
+// 	// mlx_loop_hook(mlx.mlx_ptr, print_pressed, &mlx);
+// 	mlx_loop(mlx.mlx_ptr);
+// }
+
+int key_press(int keycode, void *test)
+{
+	printf("ON PRESS -> CHAR: %c\n", (unsigned char)keycode);
+	(void)test;
+	return (0);
+}
+
+int key_release(int keycode, void *test)
+{
+	printf("ON RELEASE -> CHAR: %c\n", (unsigned char)keycode);
+	(void)test;
+	return (0);
+}
+
+int main (void)
+{
+
+	void *mlx = mlx_init();
+	void *win_ptr = mlx_new_window(mlx, 100, 100, "TESTE");
+
+	mlx_hook(win_ptr, 3, 1L << 3, key_release, &mlx);
+	mlx_hook(win_ptr, 2, 1L << 0, key_press, &mlx);
+	mlx_loop(mlx);
+	(void)win_ptr;
+}
