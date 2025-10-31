@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:47:51 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:51:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void	move_player(t_game *game, t_pos next_pos)
 	char		next_tile;
 
 	next_tile = ((char **)game->map.tab)[next_pos.row][next_pos.col];
-
 	if (next_tile == WALL)
 		return ;
 	if (next_tile == QUEST)
@@ -123,7 +122,6 @@ int	key_press(int keycode, t_game *game)
 
 	keycode = (unsigned char)keycode;
 	gettimeofday(&now, NULL);
-
 	time_passed = (now.tv_sec - game->mlx.key_press_time[keycode].tv_sec) * 1000000
 					+ now.tv_usec - game->mlx.key_press_time[keycode].tv_usec;
 	if (time_passed > 10000)
