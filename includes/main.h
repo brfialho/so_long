@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 17:53:00 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:29:51 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@
 // Macros
 # ifndef VALID_CHARS
 #  define VALID_CHARS "01CEP"
-# endif
-
-# ifndef WIDTH 
-#  define WIDTH 1920
-# endif
-
-# ifndef HEIGHT
-#  define HEIGHT 1080
-# endif
-
-# ifndef ESC
-#  define ESC 27
 # endif
 
 # ifndef PLAYER
@@ -52,6 +40,10 @@
 
 # ifndef ASCII
 #  define ASCII 256
+# endif
+
+# ifndef ESC
+#  define ESC 27
 # endif
 
 typedef enum
@@ -111,13 +103,12 @@ typedef struct	s_mlx_img
 
 typedef struct	s_mlx
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-	t_mlx_img		img;
-	int				height;
-	int				width;
-	struct timeval	key_press_time[ASCII];
-	int	key_is_pressed[ASCII];
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_mlx_img	img;
+	int			height;
+	int			width;
+	int			key_is_pressed[ASCII];
 }				t_mlx;
 
 typedef struct s_game

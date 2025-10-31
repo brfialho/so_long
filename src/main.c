@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:13:48 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:28:25 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	init_game_data(t_game *game)
 	game->mlx.height = (int)game->map.rows * 32;
 	game->mlx.width = (int)game->map.cols * 32;
 	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
-	ft_bzero(game->mlx.key_press_time, sizeof(game->mlx.key_press_time));
 }
 
 int	init_mlx_display(t_mlx	*mlx)
@@ -115,35 +114,6 @@ void	move_player(t_game *game, t_pos next_pos)
 	game->player = next_pos;
 }
 
-// int	key_press(int keycode, t_game *game)
-// {
-// 	struct timeval	now;
-// 	long			time_passed;
-
-// 	keycode = (unsigned char)keycode;
-// 	gettimeofday(&now, NULL);
-// 	time_passed = (now.tv_sec - game->mlx.key_press_time[keycode].tv_sec) * 1000000
-// 					+ now.tv_usec - game->mlx.key_press_time[keycode].tv_usec;
-// 	if (time_passed > 10000)
-// 		game->mlx.key_is_pressed[keycode] = FALSE;
-// 	if (!game->mlx.key_is_pressed[keycode])
-// 	{
-// 		game->mlx.key_press_time[keycode] = now;
-// 		game->mlx.key_is_pressed[keycode] = TRUE;
-// 		if (keycode == ESC)
-// 			return (destroy_game(game));
-// 		if (keycode == 'W' || keycode == 'w')
-// 			move_player(game, (t_pos){game->player.row - 1, game->player.col});
-// 		if (keycode == 'A' || keycode == 'a')
-// 			move_player(game, (t_pos){game->player.row, game->player.col - 1});
-// 		if (keycode == 'S' || keycode == 's')
-// 			move_player(game, (t_pos){game->player.row + 1, game->player.col});
-// 		if (keycode == 'D' || keycode == 'd')
-// 			move_player(game, (t_pos){game->player.row, game->player.col + 1});
-// 	}
-// 	return (0);
-// }
-
 int key_press(int keycode, t_game *game)
 {
 	game->mlx.key_is_pressed[(unsigned char)keycode] = TRUE;
@@ -160,11 +130,10 @@ void	all_key_release(t_game *game)
 		game->mlx.key_is_pressed[keycode++] = FALSE;
 }
 
-int	game_logic(t_game *game)
+void	handle_keys(t_game *game)
 {
 	if (game->mlx.key_is_pressed[ESC])
-		return (destroy_game(game));
-	printf ("%d\n", game->mlx.key_is_pressed['w']);
+		destroy_game(game);
 	if (game->mlx.key_is_pressed['W'] || game->mlx.key_is_pressed['w'])
 		move_player(game, (t_pos){game->player.row - 1, game->player.col});
 	if (game->mlx.key_is_pressed['A'] || game->mlx.key_is_pressed['a'])
@@ -173,6 +142,11 @@ int	game_logic(t_game *game)
 		move_player(game, (t_pos){game->player.row + 1, game->player.col});
 	if (game->mlx.key_is_pressed['D'] || game->mlx.key_is_pressed['d'])
 		move_player(game, (t_pos){game->player.row, game->player.col + 1});
+}
+
+int	game_logic(t_game *game)
+{
+	handle_keys(game);
 	all_key_release (game);
 	render_image(game);
 	return (0);
