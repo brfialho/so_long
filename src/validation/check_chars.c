@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:12:40 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 20:06:26 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:13:41 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	check_chars(t_tab *map, t_char_counter *obj)
 	{
 		if (!ft_str_allinset((const char *)map->tab[i], VALID_CHARS))
 			validator_error_handler(map, CHARS);
-		obj->c_count += ft_str_charcount((const char *)map->tab[i], 'C');
-		obj->e_count += ft_str_charcount((const char *)map->tab[i], 'E');
-		obj->p_count += ft_str_charcount((const char *)map->tab[i], 'P');
+		obj->c_count += ft_str_charcount((const char *)map->tab[i], QUEST);
+		obj->e_count += ft_str_charcount((const char *)map->tab[i], EXIT);
+		obj->p_count += ft_str_charcount((const char *)map->tab[i], PLAYER);
 		i++;
 	}
 	if (!valid_count(*obj))

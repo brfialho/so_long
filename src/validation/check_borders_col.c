@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:11:22 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:59:38 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:14:41 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	check_borders_col(t_tab *map)
 	row = 0;
 	col = 0;
 	while (row < map->rows)
-		if (((char **)map->tab)[row++][col] != '1')
+		if (((char **)map->tab)[row++][col] != WALL)
 			validator_error_handler(map, BORDER);
 	row = 0;
 	col = map->cols - 1;
 	while (row < map->rows)
-		if (((char **)map->tab)[row++][col] != '1')
+		if (((char **)map->tab)[row++][col] != WALL)
 			validator_error_handler(map, BORDER);
 }

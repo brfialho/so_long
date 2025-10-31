@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:06:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:10:30 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@
 
 # ifndef ESC
 #  define ESC 27
+# endif
+
+# ifndef PLAYER
+#  define PLAYER 'P'
+# endif
+
+# ifndef EXIT
+#  define EXIT 'E'
+# endif
+
+# ifndef QUEST
+#  define QUEST 'C'
+# endif
+
+# ifndef FLOOR
+#  define FLOOR '0'
+# endif
+
+# ifndef WALL
+#  define WALL '1'
 # endif
 
 # ifndef ASCII

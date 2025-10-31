@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:06:15 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:12:18 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void	render_image(t_game *game)
 		col = -1;
 		while (++col < (int)game->map.cols)
 		{
-			if (((char **)game->map.tab)[row][col] == 'P')
+			if (((char **)game->map.tab)[row][col] == PLAYER)
 				draw_square(game->mlx, row, col, get_rgb(255, 0, 0));
-			if (((char **)game->map.tab)[row][col] == 'C')
+			if (((char **)game->map.tab)[row][col] == QUEST)
 				draw_square(game->mlx, row, col, get_rgb(255, 255, 0));
-			if (((char **)game->map.tab)[row][col] == '0')
+			if (((char **)game->map.tab)[row][col] == FLOOR)
 				draw_square(game->mlx, row, col, get_rgb(128, 128, 128));
-			if (((char **)game->map.tab)[row][col] == '1')
+			if (((char **)game->map.tab)[row][col] == WALL)
 				draw_square(game->mlx, row, col, get_rgb(0, 0, 0));
-			if (((char **)game->map.tab)[row][col] == 'E')
+			if (((char **)game->map.tab)[row][col] == EXIT)
 				draw_square(game->mlx, row, col, get_rgb(255, 255, 255));
 		}
 	}
@@ -103,7 +103,7 @@ int	game_logic(t_game	*game)
 
 void	move_player(t_game *game, e_direction d)
 {
-	t_pos	next_pos;
+	t_pos		next_pos;
 	char		next_tile;
 
 	next_pos = game->player;
@@ -118,17 +118,17 @@ void	move_player(t_game *game, e_direction d)
 
 	next_tile = ((char **)game->map.tab)[next_pos.row][next_pos.col];
 
-	if (next_tile == '1')
+	if (next_tile == WALL)
 		return ;
-	if (next_tile == 'C')
+	if (next_tile == QUEST)
 		game->obj.c_count--;
-	if (next_tile == 'E'
+	if (next_tile == EXIT
 		&& !game->obj.c_count)
 		destroy_game(game);
-	((char **)game->map.tab)[next_pos.row][next_pos.col] = 'P';
-	((char **)game->map.tab)[game->player.row][game->player.col] = '0';
+	((char **)game->map.tab)[next_pos.row][next_pos.col] = PLAYER;
+	((char **)game->map.tab)[game->player.row][game->player.col] = FLOOR;
 	if (game->player.row == game->exit.row && game->player.col == game->exit.col)
-		((char **)game->map.tab)[game->player.row][game->player.col] = 'E';
+		((char **)game->map.tab)[game->player.row][game->player.col] = EXIT;
 	game->player = next_pos;
 }
 

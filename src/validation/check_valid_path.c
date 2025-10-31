@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:14:31 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:06:15 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:14:03 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	obj_finder(t_tab map, t_pos *player, t_pos *exit)
 		col = 0;
 		while (col < map.cols)
 		{
-			if (((char **)map.tab)[row][col] == 'P')
+			if (((char **)map.tab)[row][col] == PLAYER)
 				*player = (t_pos){row, col};
-			if (((char **)map.tab)[row][col] == 'E')
+			if (((char **)map.tab)[row][col] == EXIT)
 				*exit = (t_pos){row, col};
 			col++;
 		}
@@ -56,13 +56,13 @@ static void	obj_finder(t_tab map, t_pos *player, t_pos *exit)
 
 static int	path_solver(t_tab *dup, size_t row, size_t col, t_char_counter *reachable)
 {
-	if (((char**)dup->tab)[row][col] == 'E')
+	if (((char**)dup->tab)[row][col] == EXIT)
 		reachable->e_count++;
-	if (((char**)dup->tab)[row][col] == 'C')
+	if (((char**)dup->tab)[row][col] == QUEST)
 		reachable->c_count++;
-	if (((char**)dup->tab)[row][col] == '1')
+	if (((char**)dup->tab)[row][col] == WALL)
 		return (FALSE);
-	((char**)dup->tab)[row][col] = '1';
+	((char**)dup->tab)[row][col] = WALL;
 	if (path_solver(dup, row - 1, col, reachable)
 		|| path_solver(dup, row, col + 1, reachable)
 		|| path_solver(dup, row + 1, col, reachable)
