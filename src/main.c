@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:12:18 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:47:51 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	draw_square(t_mlx mlx, int row, int col, unsigned int color)
 	}
 }
 
-void	render_image(t_game *game)
+int	render_image(t_game *game)
 {
 	int	row;
 	int	col;
@@ -93,28 +93,12 @@ void	render_image(t_game *game)
 		}
 	}
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img.img_ptr, 0, 0);
-}
-
-int	game_logic(t_game	*game)
-{
-	render_image(game);
 	return (0);
 }
 
-void	move_player(t_game *game, e_direction d)
+void	move_player(t_game *game, t_pos next_pos)
 {
-	t_pos		next_pos;
 	char		next_tile;
-
-	next_pos = game->player;
-	if (d == UP)
-		next_pos.row--;
-	if (d == RIGHT)
-		next_pos.col++;
-	if (d == DOWN)
-		next_pos.row++;
-	if (d == LEFT)
-		next_pos.col--;
 
 	next_tile = ((char **)game->map.tab)[next_pos.row][next_pos.col];
 
@@ -151,13 +135,13 @@ int	key_press(int keycode, t_game *game)
 		if (keycode == ESC)
 			return (destroy_game(game));
 		if (keycode == 'W' || keycode == 'w')
-			move_player(game, UP);
+			move_player(game, (t_pos){game->player.row - 1, game->player.col});
 		if (keycode == 'A' || keycode == 'a')
-			move_player(game, LEFT);
+			move_player(game, (t_pos){game->player.row, game->player.col - 1});
 		if (keycode == 'S' || keycode == 's')
-			move_player(game, DOWN);
+			move_player(game, (t_pos){game->player.row + 1, game->player.col});
 		if (keycode == 'D' || keycode == 'd')
-			move_player(game, RIGHT);
+			move_player(game, (t_pos){game->player.row, game->player.col + 1});
 	}
 	return (0);
 }
@@ -175,6 +159,6 @@ int	main(int argc, char **argv)
 
 	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
+	mlx_loop_hook(game.mlx.mlx_ptr, render_image, &game);
 	mlx_loop(game.mlx.mlx_ptr);
 }
