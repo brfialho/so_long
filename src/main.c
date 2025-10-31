@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:28:25 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:48:27 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	init_game_data(t_game *game)
 {
-	game->mlx.height = (int)game->map.rows * 32;
-	game->mlx.width = (int)game->map.cols * 32;
+	game->mlx.height = (int)game->map.rows * SQUARE;
+	game->mlx.width = (int)game->map.cols * SQUARE;
 	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
 }
 
@@ -60,11 +60,11 @@ void	draw_square(t_mlx mlx, int row, int col, unsigned int color)
 	int	y;
 
 	y = -1;
-	while (++y < 32)
+	while (++y < SQUARE)
 	{
 		x = -1;
-		while (++x < 32)
-			pixel_put(&mlx.img, col * 32 + x, row * 32 + y, color);
+		while (++x < SQUARE)
+			pixel_put(&mlx.img, col * SQUARE + x, row * SQUARE + y, color);
 	}
 }
 

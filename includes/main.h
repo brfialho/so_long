@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:29:51 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:48:07 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 
 # ifndef ESC
 #  define ESC 27
+# endif
+
+# ifndef SQUARE
+#  define SQUARE 32
 # endif
 
 typedef enum
