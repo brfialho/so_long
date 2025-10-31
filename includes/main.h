@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:48:07 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:53:48 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_game
 	t_pos			player;
 	t_pos			exit;
 	t_char_counter	obj;
+	size_t			moves;
 }				t_game;
 
 //Functions

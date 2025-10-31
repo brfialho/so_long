@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:48:27 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/10/31 19:06:00 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	init_game_data(t_game *game)
 {
+	game->moves = 0;
 	game->mlx.height = (int)game->map.rows * SQUARE;
 	game->mlx.width = (int)game->map.cols * SQUARE;
 	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
@@ -42,7 +43,7 @@ int	destroy_game(t_game *game)
 {
 	destroy_mlx(&game->mlx, TRUE, TRUE);
 	ft_tab_free_content(&game->map);
-	ft_printf("Thanks for Playing !!\n");
+	ft_printf("\nThanks for Playing !!\n");
 	exit(0);
 }
 
@@ -112,6 +113,7 @@ void	move_player(t_game *game, t_pos next_pos)
 	if (game->player.row == game->exit.row && game->player.col == game->exit.col)
 		((char **)game->map.tab)[game->player.row][game->player.col] = EXIT;
 	game->player = next_pos;
+	ft_printf("Movement counter: %d\n", ++game->moves);
 }
 
 int key_press(int keycode, t_game *game)
@@ -124,7 +126,7 @@ void	all_key_release(t_game *game)
 {
 	int	keycode;
 
-	ft_usleep(30000);
+	ft_usleep(10000);
 	keycode = 0;
 	while (keycode < ASCII)
 		game->mlx.key_is_pressed[keycode++] = FALSE;
@@ -132,15 +134,16 @@ void	all_key_release(t_game *game)
 
 void	handle_keys(t_game *game)
 {
+	// printf("%d\n", game->mlx.key_is_pressed['w']);
 	if (game->mlx.key_is_pressed[ESC])
 		destroy_game(game);
 	if (game->mlx.key_is_pressed['W'] || game->mlx.key_is_pressed['w'])
 		move_player(game, (t_pos){game->player.row - 1, game->player.col});
-	if (game->mlx.key_is_pressed['A'] || game->mlx.key_is_pressed['a'])
+	else if (game->mlx.key_is_pressed['A'] || game->mlx.key_is_pressed['a'])
 		move_player(game, (t_pos){game->player.row, game->player.col - 1});
-	if (game->mlx.key_is_pressed['S'] || game->mlx.key_is_pressed['s'])
+	else if (game->mlx.key_is_pressed['S'] || game->mlx.key_is_pressed['s'])
 		move_player(game, (t_pos){game->player.row + 1, game->player.col});
-	if (game->mlx.key_is_pressed['D'] || game->mlx.key_is_pressed['d'])
+	else if (game->mlx.key_is_pressed['D'] || game->mlx.key_is_pressed['d'])
 		move_player(game, (t_pos){game->player.row, game->player.col + 1});
 }
 
@@ -158,10 +161,8 @@ int	main(int argc, char **argv)
 
 	map_parser(&game.map, argc, argv);
 	map_validator(&game);
-	
-	ft_split_print((char **)game.map.tab);
-
 	init_game(&game);
+	ft_printf("\n####### Welcome to brfialho so_long !! #######\n\n");
 	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
 	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
 	mlx_loop_hook(game.mlx.mlx_ptr, game_logic, &game);
