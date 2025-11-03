@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 17:17:12 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 19:26:07 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:39:48 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-u_int	get_rgb(u_char r, u_char g, u_char b)
+t_uint	get_rgb(t_uchar r, t_uchar g, t_uchar b)
 {
-	return ((u_int)r << 16 | g << 8 | b);
+	return ((t_uint)r << 16 | g << 8 | b);
 }

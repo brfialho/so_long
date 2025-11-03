@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:46:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 18:46:35 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:23:01 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	move_player(t_game *game, t_pos next_pos)
 		destroy_game(game);
 	((char **)game->map.tab)[next_pos.row][next_pos.col] = PLAYER;
 	((char **)game->map.tab)[game->player.row][game->player.col] = FLOOR;
-	if (game->player.row == game->exit.row && game->player.col == game->exit.col)
+	if (game->player.row == game->exit.row
+		&& game->player.col == game->exit.col)
 		((char **)game->map.tab)[game->player.row][game->player.col] = EXIT;
 	game->player = next_pos;
 	ft_printf("Movement counter: %d\n", ++game->moves);

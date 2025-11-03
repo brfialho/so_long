@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:03:18 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/24 16:07:41 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:37:10 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	validator_error_handler(t_tab *map, e_error error)
+void	validator_error_handler(t_tab *map, t_error error)
 {
 	ft_tab_free_content(map);
 	if (error == MEMORY)
@@ -24,7 +24,8 @@ void	validator_error_handler(t_tab *map, e_error error)
 	if (error == CHARS)
 		ft_printf("Error\nInvalid map : unallowed chars\n");
 	if (error == COUNT)
-		ft_printf("Error\nInvalid map : wrong number of players/colectables/exits\n");
+		ft_printf("Error\nInvalid map : wrong number of \
+					players/colectables/exits\n");
 	if (error == PATH)
 		ft_printf("Error\nInvalid map : invalid path\n");
 	exit(1);

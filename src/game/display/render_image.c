@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 18:43:04 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:30:32 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	render_image(t_game *game)
 {
 	int	row;
 	int	col;
-	
+
 	row = -1;
 	while (++row < (int)game->map.rows)
 	{
@@ -35,6 +35,8 @@ int	render_image(t_game *game)
 				draw_square(game->mlx, row, col, get_rgb(255, 255, 255));
 		}
 	}
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img.img_ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx.mlx_ptr, \
+							game->mlx.win_ptr, \
+							game->mlx.img.img_ptr, 0, 0);
 	return (0);
 }

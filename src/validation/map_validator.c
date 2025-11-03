@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                        :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 18:18:37 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/23 18:18:59 by brfialho         ###   ########.fr       */
+/*   Created: 2025/11/03 20:22:00 by brfialho          #+#    #+#             */
+/*   Updated: 2025/11/03 20:22:16 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	map_validator(t_game *game)
 {
-
 	check_size(&game->map);
 	check_borders_row(&game->map);
 	check_borders_col(&game->map);

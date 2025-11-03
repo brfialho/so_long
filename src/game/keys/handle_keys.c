@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:06:43 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 19:06:52 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:26:43 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	handle_keys(t_game *game)
 {
-	// printf("%d\n", game->mlx.key_is_pressed['w']);
 	if (game->mlx.key_is_pressed[ESC])
 		destroy_game(game);
 	if (game->mlx.key_is_pressed['W'] || game->mlx.key_is_pressed['w'])

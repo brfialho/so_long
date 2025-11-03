@@ -6,15 +6,15 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:12:40 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 21:13:41 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:21:07 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static int	valid_count(t_char_counter counter);
+static int	valid_count(t_chr_cnt counter);
 
-void	check_chars(t_tab *map, t_char_counter *obj)
+void	check_chars(t_tab *map, t_chr_cnt *obj)
 {
 	size_t			i;
 
@@ -35,7 +35,7 @@ void	check_chars(t_tab *map, t_char_counter *obj)
 		validator_error_handler(map, COUNT);
 }
 
-static int	valid_count(t_char_counter obj)
+static int	valid_count(t_chr_cnt obj)
 {
 	if (obj.c_count < 1)
 		return (FALSE);

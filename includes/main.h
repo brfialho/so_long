@@ -6,12 +6,21 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 20:05:44 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:41:51 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
- #define MAIN_H
+# define MAIN_H
+
+// Includes
+# include "libft.h"
+# include "mlx.h"
+# include <stdio.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <string.h>
+# include <sys/time.h>
 
 // Macros
 # ifndef VALID_CHARS
@@ -50,7 +59,7 @@
 #  define SQUARE 32
 # endif
 
-typedef enum
+typedef enum e_error
 {
 	MEMORY,
 	USAGE,
@@ -63,32 +72,15 @@ typedef enum
 	CHARS,
 	COUNT,
 	PATH
-} e_error;
-
-typedef enum
-{
-	UP,
-	RIGHT,
-	DOWN,
-	LEFT
-} e_direction;
-
-// Includes
-# include "libft.h"
-# include "mlx.h"
-# include <stdio.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <string.h>
-# include <sys/time.h>
+}	t_error;
 
 // Structs
-typedef struct s_char_counter
+typedef struct s_chr_cnt
 {
 	size_t	c_count;
 	size_t	e_count;
 	size_t	p_count;
-}	t_char_counter;
+}	t_chr_cnt;
 
 typedef struct s_pos
 {
@@ -96,16 +88,16 @@ typedef struct s_pos
 	size_t	col;
 }	t_pos;
 
-typedef struct	s_mlx_img
+typedef struct s_mlx_img
 {
 	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-}				t_mlx_img;
+}	t_mlx_img;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -113,16 +105,16 @@ typedef struct	s_mlx
 	int			height;
 	int			width;
 	int			key_is_pressed[ASCII];
-}				t_mlx;
+}	t_mlx;
 
 typedef struct s_game
 {
-	t_tab			map;
-	t_mlx			mlx;
-	t_pos			player;
-	t_pos			exit;
-	t_char_counter	obj;
-	size_t			moves;
+	t_tab		map;
+	t_mlx		mlx;
+	t_pos		player;
+	t_pos		exit;
+	t_chr_cnt	obj;
+	size_t		moves;
 }				t_game;
 
 //Functions
@@ -130,7 +122,7 @@ typedef struct s_game
 // Map parsing
 int		is_rectangular(char **split);
 void	map_init(t_tab *map, char **split);
-void	parser_error_handler(int fd, char **split, e_error error);
+void	parser_error_handler(int fd, char **split, t_error error);
 void	map_parser(t_tab *map, int argc, char **argv);
 char	**read_lines(int fd);
 int		valid_file_name(char *s);
@@ -138,25 +130,25 @@ int		valid_file_name(char *s);
 // Map validation
 void	check_borders_col(t_tab *map);
 void	check_borders_row(t_tab *map);
-void	check_chars(t_tab *map, t_char_counter *obj);
+void	check_chars(t_tab *map, t_chr_cnt *obj);
 void	check_size(t_tab *map);
-void	check_valid_path(t_tab *map, t_char_counter obj, t_pos *player, t_pos *exit);
-void	validator_error_handler(t_tab *map, e_error error);
+void	check_valid_path(t_tab *map, t_chr_cnt obj, t_pos *player, t_pos *exit);
+void	validator_error_handler(t_tab *map, t_error error);
 void	map_validator(t_game *game);
 
 // Game
 int		game_loop(t_game *game);
 
 // Init / Destroy
-int				destroy_game(t_game *game);
-int				destroy_mlx(t_mlx *mlx, int win, int img);
-void			init_game(t_game *game);
-int				init_mlx_display(t_mlx *mlx);
+int		destroy_game(t_game *game);
+int		destroy_mlx(t_mlx *mlx, int win, int img);
+void	init_game(t_game *game);
+int		init_mlx_display(t_mlx *mlx);
 
 // Display
 void	draw_square(t_mlx mlx, int row, int col, t_uint color);
 t_uint	get_rgb(t_uchar r, t_uchar g, t_uchar b);
-void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color);
+void	pixel_put(t_mlx_img *img, int x, int y, t_uint color);
 int		render_image(t_game *game);
 
 // Keys

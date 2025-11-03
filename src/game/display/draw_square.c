@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:43:31 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 19:27:59 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 20:39:36 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	draw_square(t_mlx mlx, int row, int col, u_int color)
+void	draw_square(t_mlx mlx, int row, int col, t_uint color)
 {
 	int	x;
 	int	y;
