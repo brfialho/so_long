@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_rgb.c                                          :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 17:17:12 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/30 17:17:26 by brfialho         ###   ########.fr       */
+/*   Created: 2025/11/03 19:07:05 by brfialho          #+#    #+#             */
+/*   Updated: 2025/11/03 19:07:14 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b)
+int key_press(int keycode, t_game *game)
 {
-	return ((unsigned int)r << 16 | g << 8 | b);
+	game->mlx.key_is_pressed[(unsigned char)keycode] = TRUE;
+	return (0);
 }

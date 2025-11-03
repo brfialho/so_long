@@ -24,10 +24,20 @@ SRC = src/main.c \
 		src/validation/check_valid_path.c \
 		src/validation/validator_error_handler.c \
 		src/validation/map_validator.c \
-		src/mlx_utils/destroy_mlx.c \
-		src/mlx_utils/ft_usleep.c \
-		src/mlx_utils/get_rgb.c \
-		src/mlx_utils/pixel_put.c
+		src/game/display/draw_square.c \
+		src/game/display/get_rgb.c \
+		src/game/display/pixel_put.c \
+		src/game/display/render_image.c \
+		src/game/init_destroy/destroy_game.c \
+		src/game/init_destroy/destroy_mlx.c \
+		src/game/init_destroy/init_game.c \
+		src/game/init_destroy/init_mlx_display.c \
+		src/game/keys/all_key_release.c \
+		src/game/keys/handle_keys.c \
+		src/game/keys/key_press.c \
+		src/game/logic/move_player.c \
+		src/game/game_loop.c \
+		src/game/utils.c
 
 
 O_DIR = obj/

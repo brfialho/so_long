@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_rgb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 19:04:02 by brfialho         ###   ########.fr       */
+/*   Created: 2025/10/30 17:17:12 by brfialho          #+#    #+#             */
+/*   Updated: 2025/11/03 19:26:07 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	main(int argc, char **argv)
+u_int	get_rgb(u_char r, u_char g, u_char b)
 {
-	t_game	game;
-
-	map_parser(&game.map, argc, argv);
-	map_validator(&game);
-	init_game(&game);
-	ft_printf("\n####### Welcome to brfialho so_long !! #######\n\n");
-	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, game_loop, &game);
-	mlx_loop(game.mlx.mlx_ptr);
+	return ((u_int)r << 16 | g << 8 | b);
 }

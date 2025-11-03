@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/17 16:28:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 19:04:02 by brfialho         ###   ########.fr       */
+/*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
+/*   Updated: 2025/11/03 18:25:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	main(int argc, char **argv)
+void	init_game(t_game *game)
 {
-	t_game	game;
-
-	map_parser(&game.map, argc, argv);
-	map_validator(&game);
-	init_game(&game);
-	ft_printf("\n####### Welcome to brfialho so_long !! #######\n\n");
-	mlx_hook(game.mlx.win_ptr, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.mlx.win_ptr, 17, 1L << 17, destroy_game, &game);
-	mlx_loop_hook(game.mlx.mlx_ptr, game_loop, &game);
-	mlx_loop(game.mlx.mlx_ptr);
+	game->moves = 0;
+	game->mlx.height = (int)game->map.rows * SQUARE;
+	game->mlx.width = (int)game->map.cols * SQUARE;
+	ft_bzero(game->mlx.key_is_pressed, sizeof(game->mlx.key_is_pressed));
+	if (!init_mlx_display(&game->mlx))
+		destroy_game(game);
 }

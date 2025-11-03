@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/10/31 18:53:48 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 19:37:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ char	**read_lines(int fd);
 int		valid_file_name(char *s);
 
 // Map validation
-
 void	check_borders_col(t_tab *map);
 void	check_borders_row(t_tab *map);
 void	check_chars(t_tab *map, t_char_counter *obj);
@@ -145,11 +144,30 @@ void	check_valid_path(t_tab *map, t_char_counter obj, t_pos *player, t_pos *exit
 void	validator_error_handler(t_tab *map, e_error error);
 void	map_validator(t_game *game);
 
-// MLX utils
+// Game
+int		game_loop(t_game *game);
 
+// Init / Destroy
+int				destroy_game(t_game *game);
 int				destroy_mlx(t_mlx *mlx, int win, int img);
-void			ft_usleep(long usec);
-unsigned int	get_rgb(unsigned char r, unsigned char g, unsigned char b);
-void			pixel_put(t_mlx_img *img, int x, int y, unsigned int color);
+void			init_game(t_game *game);
+int				init_mlx_display(t_mlx *mlx);
+
+// Display
+void	draw_square(t_mlx mlx, int row, int col, u_int color);
+u_int	get_rgb(u_char r, u_char g, u_char b);
+void	pixel_put(t_mlx_img *img, int x, int y, unsigned int color);
+int		render_image(t_game *game);
+
+// Keys
+void	all_key_release(t_game *game);
+void	handle_keys(t_game *game);
+int		key_press(int keycode, t_game *game);
+
+// Logic
+void	move_player(t_game *game, t_pos next_pos);
+
+// Utils
+void	ft_usleep(long usec);
 
 #endif
