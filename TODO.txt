@@ -1,17 +1,5 @@
-# Make bonus | DONE
-
 # Sprites
-
-# Enemy in map | DONE
-
-# Enemy Move
-
-# Enemy dmg
-
-# Display move in screen
 
 # Submodules
 
-# change sleep from place
 
-# change move player from place

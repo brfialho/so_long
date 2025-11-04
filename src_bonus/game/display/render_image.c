@@ -6,11 +6,28 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:59:46 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 20:51:13 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
+
+void display_moves(t_game *game)
+{
+	char	*moves;
+
+	moves = ft_itoa(game->moves);
+	if (!moves)
+		destroy_game(game);
+	game->moves_str = ft_strjoin("Movement Counter: ", moves);
+	free(moves);
+	if (!game->moves_str)
+		destroy_game(game);
+	mlx_string_put(game->mlx.mlx_ptr, game->mlx.win_ptr, SQUARE, SQUARE / 2, get_rgb(0, 255, 0), game->moves_str);
+	free(game->moves_str);
+	game->moves_str = NULL;
+}
+
 
 void	render_image(t_game *game)
 {
@@ -39,4 +56,5 @@ void	render_image(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
 							game->mlx.img.img_ptr, 0, 0);
+	display_moves(game);
 }

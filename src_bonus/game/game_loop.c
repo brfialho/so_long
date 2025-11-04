@@ -24,12 +24,11 @@ t_pos	get_ramdom_move(t_pos next)
 	ramdom = (rand() % (max - min + 1)) + min;
 	if (ramdom == 1)
 		return ((t_pos){next.row - 1, next.col});
-	else if (ramdom == 2)
+	if (ramdom == 2)
 		return ((t_pos){next.row, next.col + 1});
-	else if (ramdom == 3)
+	if (ramdom == 3)
 		return ((t_pos){next.row + 1, next.col});
-	else
-		return ((t_pos){next.row, next.col - 1});
+	return ((t_pos){next.row, next.col - 1});
 }
 
 
@@ -68,6 +67,7 @@ void	handle_monsters(t_game *game)
 	while (++i < (int)game->obj.x_count)
 		move_monster(game, get_ramdom_move(game->monster[i].pos), i);
 }
+
 
 int	game_loop(t_game *game)
 {
