@@ -1,19 +1,13 @@
-# Learn permitted functions | DONE
+# Make bonus
 
-# Read map from argv | DONE
+# Sprites
 
-# Validate map | DONE
+# Enemy in map
 
-# Add Opening and closing of window | DONE
+# Enemy Move
 
-# Understand basic functionality of mlx
+# Enemy dmg
 
-# Search sprites
+# Display move in screen
 
-# Map image
-
-# Quest items
-
-# Player
-
-# Enemies
+# Submodules
