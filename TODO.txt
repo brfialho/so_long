@@ -1,8 +1,8 @@
-# Make bonus
+# Make bonus | DONE
 
 # Sprites
 
-# Enemy in map
+# Enemy in map | DONE
 
 # Enemy Move
 
