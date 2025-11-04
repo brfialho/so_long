@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:23:24 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:41:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 // Macros
 # ifndef VALID_CHARS
-#  define VALID_CHARS "01CEP"
+#  define VALID_CHARS "01CEPX"
 # endif
 
 # ifndef PLAYER
@@ -37,6 +37,10 @@
 
 # ifndef QUEST
 #  define QUEST 'C'
+# endif
+
+# ifndef ENEMY
+#  define ENEMY 'X'
 # endif
 
 # ifndef FLOOR
@@ -80,6 +84,7 @@ typedef struct s_chr_cnt
 	size_t	c_count;
 	size_t	e_count;
 	size_t	p_count;
+	size_t	x_count;
 }	t_chr_cnt;
 
 typedef struct s_pos
