@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 17:21:40 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 18:36:32 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,12 @@ typedef struct s_mlx
 	int			key_is_pressed[ASCII];
 }	t_mlx;
 
+typedef struct s_monster
+{
+	t_pos	pos;
+	t_pos	next;
+}	t_monster;
+
 typedef struct s_game
 {
 	t_tab		map;
@@ -120,6 +126,7 @@ typedef struct s_game
 	t_pos		exit;
 	t_chr_cnt	obj;
 	size_t		moves;
+	t_monster	*monster;
 }	t_game;
 
 //Functions
