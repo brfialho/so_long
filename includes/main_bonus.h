@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 18:36:32 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 19:09:24 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ typedef enum e_error
 	COUNT,
 	PATH
 }	t_error;
+
+typedef enum e_direction
+{
+	UP = 1,
+	RIGHT = 2,
+	DOWN = 3,
+	LEFT = 4
+}	t_direction;
 
 // Structs
 typedef struct s_chr_cnt

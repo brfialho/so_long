@@ -12,7 +12,7 @@
 
 #include "main_bonus.h"
 
-// int	get_ramdom_pos(void)
+// t_pos	get_ramdom_move(t_pos next)
 // {
 // 	int	min;
 // 	int	max;
@@ -22,19 +22,42 @@
 // 	max = 4;
 
 // 	ramdom = (rand() % (max - min + 1)) + min;
-// 	return (ramdom);
+// 	if (ramdom == 1)
+// 		return ((t_pos){next.row - 1, next.col});
+// 	else if (ramdom == 2)
+// 		return ((t_pos){next.row, next.col});
+// 	else if (ramdom == 3)
+// 		return ((t_pos){next.row, next.col});
+// 	else
+// 		return ((t_pos){next.row, next.col});
 // }
 
-// void move_monsters(t_game *game)
+
+// void	move_monster(t_game *game, t_pos next_pos)
 // {
-// 	game = 0;
-// 	get_ramdom_pos();
-// }
+// 	char		next_tile;
 
+// 	next_tile = ((char **)game->map.tab)[next_pos.row][next_pos.col];
+// 	if (next_tile == WALL)
+// 		return ;
+// 	((char **)game->map.tab)[next_pos.row][next_pos.col] = PLAYER;
+// 	((char **)game->map.tab)[game->player.row][game->player.col] = FLOOR;
+// 	if (game->player.row == game->exit.row
+// 		&& game->player.col == game->exit.col)
+// 		((char **)game->map.tab)[game->player.row][game->player.col] = EXIT;
+// 	game->player = next_pos;
+// }
 
 // void	handle_monsters(t_game *game)
 // {
-// 	move_monsters(game);
+// 	int			i;
+// 	t_direction	d;
+
+// 	i = -1;
+// 	while (++i < game->obj.x_count)
+// 		{
+			
+// 		}
 // }
 
 int	game_loop(t_game *game)
