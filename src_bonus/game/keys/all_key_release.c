@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:07:38 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:24:17 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:40:00 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	all_key_release(t_game *game)
 {
 	int	keycode;
 
-	ft_usleep(10000);
 	keycode = 0;
 	while (keycode < ASCII)
 		game->mlx.key_is_pressed[keycode++] = FALSE;

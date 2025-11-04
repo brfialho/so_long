@@ -17,5 +17,6 @@ int	game_loop(t_game *game)
 	handle_keys(game);
 	all_key_release (game);
 	render_image(game);
+	ft_usleep(10000);
 	return (0);
 }

@@ -11,3 +11,7 @@
 # Display move in screen
 
 # Submodules
+
+# change sleep from place
+
+# change move player from place
