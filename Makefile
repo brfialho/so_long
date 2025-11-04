@@ -39,6 +39,38 @@ SRC = src/main.c \
 		src/game/game_loop.c \
 		src/game/utils.c
 
+BONUS_SRC = src_bonus/main.c \
+		src_bonus/parsing/is_rectangular.c \
+		src_bonus/parsing/map_init.c \
+		src_bonus/parsing/parser_error_handler.c \
+		src_bonus/parsing/map_parser.c \
+		src_bonus/parsing/read_lines.c \
+		src_bonus/parsing/valid_file_name.c \
+		src_bonus/validation/check_borders_col.c \
+		src_bonus/validation/check_borders_row.c \
+		src_bonus/validation/check_chars.c \
+		src_bonus/validation/check_size.c \
+		src_bonus/validation/check_valid_path.c \
+		src_bonus/validation/validator_error_handler.c \
+		src_bonus/validation/map_validator.c \
+		src_bonus/game/display/draw_square.c \
+		src_bonus/game/display/get_rgb.c \
+		src_bonus/game/display/pixel_put.c \
+		src_bonus/game/display/render_image.c \
+		src_bonus/game/init_destroy/destroy_game.c \
+		src_bonus/game/init_destroy/destroy_mlx.c \
+		src_bonus/game/init_destroy/init_game.c \
+		src_bonus/game/init_destroy/init_mlx_display.c \
+		src_bonus/game/keys/all_key_release.c \
+		src_bonus/game/keys/handle_keys.c \
+		src_bonus/game/keys/key_press.c \
+		src_bonus/game/logic/move_player.c \
+		src_bonus/game/game_loop.c \
+		src_bonus/game/utils.c
+
+ifeq ($(findstring bonus, $(MAKECMDGOALS)), bonus)
+	SRC = $(BONUS_SRC)
+endif
 
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)
@@ -97,5 +129,7 @@ fclean:
 	@rm -f $(NAME)
 
 re: fclean all
+
+bonus: all
 
 .PHONY: $(LIBFT) re fclean clean
