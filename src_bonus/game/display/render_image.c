@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:24:17 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:59:46 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
-int	render_image(t_game *game)
+void	render_image(t_game *game)
 {
 	int	row;
 	int	col;
@@ -25,6 +25,8 @@ int	render_image(t_game *game)
 		{
 			if (((char **)game->map.tab)[row][col] == PLAYER)
 				draw_square(game->mlx, row, col, get_rgb(255, 0, 0));
+			if (((char **)game->map.tab)[row][col] == ENEMY)
+				draw_square(game->mlx, row, col, get_rgb(75, 0, 130));
 			if (((char **)game->map.tab)[row][col] == QUEST)
 				draw_square(game->mlx, row, col, get_rgb(255, 255, 0));
 			if (((char **)game->map.tab)[row][col] == FLOOR)
@@ -35,8 +37,6 @@ int	render_image(t_game *game)
 				draw_square(game->mlx, row, col, get_rgb(255, 255, 255));
 		}
 	}
-	mlx_put_image_to_window(game->mlx.mlx_ptr, \
-							game->mlx.win_ptr, \
+	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
 							game->mlx.img.img_ptr, 0, 0);
-	return (0);
 }

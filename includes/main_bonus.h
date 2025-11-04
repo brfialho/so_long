@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:41:21 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/03 21:56:39 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int		init_mlx_display(t_mlx *mlx);
 void	draw_square(t_mlx mlx, int row, int col, t_uint color);
 t_uint	get_rgb(t_uchar r, t_uchar g, t_uchar b);
 void	pixel_put(t_mlx_img *img, int x, int y, t_uint color);
-int		render_image(t_game *game);
+void	render_image(t_game *game);
 
 // Keys
 void	all_key_release(t_game *game);
