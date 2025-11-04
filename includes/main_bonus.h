@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:56:39 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:21:40 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,6 @@ void	move_player(t_game *game, t_pos next_pos);
 
 // Utils
 void	ft_usleep(long usec);
+int		pos_cmp(t_pos first, t_pos second);
 
 #endif
