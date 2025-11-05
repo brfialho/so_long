@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:25:44 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:39:18 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,9 @@ void	handle_keys(t_game *game);
 int		key_press(int keycode, t_game *game);
 
 // Logic
+void	handle_monsters(t_game *game);
 void	move_player(t_game *game, t_pos next_pos);
+void	move_monster(t_game *game, t_pos next_pos, int i);
 
 // Utils
 void	ft_usleep(long usec);

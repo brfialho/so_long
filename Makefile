@@ -65,6 +65,8 @@ BONUS_SRC = src_bonus/main.c \
 		src_bonus/game/keys/all_key_release.c \
 		src_bonus/game/keys/handle_keys.c \
 		src_bonus/game/keys/key_press.c \
+		src_bonus/game/logic/handle_monsters.c \
+		src_bonus/game/logic/move_monster.c \
 		src_bonus/game/logic/move_player.c \
 		src_bonus/game/game_loop.c \
 		src_bonus/game/utils.c
