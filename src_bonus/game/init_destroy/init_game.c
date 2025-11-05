@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:22:42 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:48:25 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 static void	find_monsters(t_game *game);
 
-
-
 void	init_game(t_game *game)
 {
 	ft_bzero(&game->mlx, sizeof(game->mlx));
 	game->moves = 0;
+	game->frame = 0;
 	game->mlx.total_height = (int)game->map.rows * SQUARE;
 	game->mlx.total_width = (int)game->map.cols * SQUARE;
 	if (!init_mlx_display(&game->mlx))

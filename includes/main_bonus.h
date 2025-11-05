@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:27:51 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:53:54 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,10 @@
 
 # ifndef TEXTURES
 #  define TEXTURES 12
+# endif
+
+# ifndef FRAME_MAX
+#  define FRAME_MAX 200
 # endif
 
 typedef enum e_error
@@ -151,6 +155,7 @@ typedef struct s_game
 	t_pos		exit;
 	t_chr_cnt	obj;
 	t_monster	*monster;
+	int			frame;
 	int			moves;
 }	t_game;
 

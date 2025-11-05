@@ -6,16 +6,20 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:32:09 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:54:52 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
+static void	render_enviroment(t_game *game, char tile, int col, int row);
+static void	render_quest(t_game *game, int col, int row);
+
 void	render_image(t_game *game)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
+	char	tile;
 
 	row = -1;
 	while (++row < (int)game->map.rows)
@@ -23,18 +27,34 @@ void	render_image(t_game *game)
 		col = -1;
 		while (++col < (int)game->map.cols)
 		{
-			if (((char **)game->map.tab)[row][col] == EXIT)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[E], col * SQUARE, row * SQUARE);
-			if (((char **)game->map.tab)[row][col] == FLOOR)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[F], col * SQUARE, row * SQUARE);
-			if (((char **)game->map.tab)[row][col] == WALL)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[W], col * SQUARE, row * SQUARE);
-			if (((char **)game->map.tab)[row][col] == QUEST)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q], col * SQUARE, row * SQUARE);
+			tile = ((char **)game->map.tab)[row][col];
+			if (tile == EXIT || tile == FLOOR || tile == WALL)
+				render_enviroment(game, tile, col * SQUARE, row * SQUARE);
+			if (tile == QUEST)
+				render_quest(game, col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == ENEMY)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M], col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == PLAYER)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[P], col * SQUARE, row * SQUARE);
 		}
 	}
+}
+static void	render_enviroment(t_game *game, char tile, int col, int row)
+{
+	if (tile == EXIT)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[E], col, row);
+	if (tile == FLOOR)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[F], col, row);
+	if (tile == WALL)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[W], col, row);
+}
+
+static void	render_quest(t_game *game, int col, int row)
+{
+	if (game->frame > FRAME_MAX / 4 && game->frame < FRAME_MAX / 2)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q_D], col, row);
+	else if (game->frame > (FRAME_MAX / 4) * 3  && game->frame < FRAME_MAX)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q_U], col, row);
+	else
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q], col, row);
 }

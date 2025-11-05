@@ -6,13 +6,13 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:21:09 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:31:50 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:36:52 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
-static void	init_basic_img(t_mlx *mlx);
+static void	init_enviroment_img(t_mlx *mlx);
 static void	init_quest_img(t_mlx *mlx);
 static void	int_monster_img(t_mlx *mlx);
 static void	init_player_img(t_mlx *mlx);
@@ -21,7 +21,7 @@ int	init_img(t_mlx *mlx)
 {
 	int	i;
 
-	init_basic_img(mlx);
+	init_enviroment_img(mlx);
 	init_quest_img(mlx);
 	int_monster_img(mlx);
 	init_player_img(mlx);
@@ -31,7 +31,7 @@ int	init_img(t_mlx *mlx)
 			return (FALSE);
 	return (TRUE);
 }
-static void	init_basic_img(t_mlx *mlx)
+static void	init_enviroment_img(t_mlx *mlx)
 {
 	mlx->img[E] = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/exit.xpm", &mlx->img_width, &mlx->img_height);
 	mlx->img[F] = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/floor.xpm", &mlx->img_width, &mlx->img_height);
