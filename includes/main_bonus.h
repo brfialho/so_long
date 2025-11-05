@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:01:31 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:05:42 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@
 
 # ifndef SQUARE
 #  define SQUARE 32
+# endif
+
+# ifndef SPEED
+#  define SPEED 40
 # endif
 
 typedef enum e_error

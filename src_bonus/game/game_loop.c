@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 18:44:39 by brfialho          #+#    #+#             */
+/*   Created: 2025/11/03 18:44:SPEED - 1 by brfialho          #+#    #+#             */
 /*   Updated: 2025/11/03 18:45:06 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -47,8 +47,7 @@ void	move_monster(t_game *game, t_pos next_pos, int i)
 		destroy_game(game);
 	((char **)game->map.tab)[next_pos.row][next_pos.col] = ENEMY;
 	((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = FLOOR;
-	if (game->monster[i].pos.row == game->exit.row
-		&& game->monster[i].pos.col == game->exit.col)
+	if (pos_cmp(game->monster[i].pos, game->exit))
 		((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = EXIT;
 	if (is_quest)
 		((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = QUEST;
@@ -57,10 +56,10 @@ void	move_monster(t_game *game, t_pos next_pos, int i)
 
 void	handle_monsters(t_game *game)
 {
-	static int	cooldown = 39;
+	static int	cooldown = 0;
 	int			i;
 
-	if (cooldown++ < 40)
+	if (cooldown++ < SPEED)
 		return ;
 	cooldown = 0;
 	i = -1;
