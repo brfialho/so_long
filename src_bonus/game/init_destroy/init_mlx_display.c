@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:27:02 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 18:31:14 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:22:15 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,13 @@ int	init_mlx_display(t_mlx *mlx)
 		return (FALSE);
 	mlx->win_ptr = mlx_new_window(\
 					mlx->mlx_ptr, \
-					mlx->width, \
-					mlx->height, \
+					mlx->total_width, \
+					mlx->total_height, \
 					"True So Long!");
 	if (!mlx->win_ptr)
 		return (destroy_mlx(mlx, FALSE, FALSE));
-	mlx->img.img_ptr = mlx_new_image(mlx->mlx_ptr, mlx->width, mlx->height);
-	if (!mlx->img.img_ptr)
-		return (destroy_mlx(mlx, TRUE, FALSE));
-	mlx->img.addr = mlx_get_data_addr(\
-					mlx->img.img_ptr, \
-					&mlx->img.bits_per_pixel, \
-					&mlx->img.size_line, \
-					&mlx->img.endian);
-	if (!mlx->img.addr)
+	mlx->img[0] = mlx_xpm_file_to_image(mlx->mlx_ptr, "assets/monster_down.xpm", &mlx->img_width, &mlx->img_height);
+	if (!mlx->img[0])
 		return (destroy_mlx(mlx, TRUE, TRUE));
 	return (TRUE);
 }

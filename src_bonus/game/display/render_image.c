@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:03:57 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:09:35 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,7 @@ void	render_image(t_game *game)
 		col = -1;
 		while (++col < (int)game->map.cols)
 		{
-			if (((char **)game->map.tab)[row][col] == PLAYER)
-				draw_square(game->mlx, row, col, get_rgb(255, 0, 0));
-			if (((char **)game->map.tab)[row][col] == ENEMY)
-				draw_square(game->mlx, row, col, get_rgb(75, 0, 130));
-			if (((char **)game->map.tab)[row][col] == QUEST)
-				draw_square(game->mlx, row, col, get_rgb(255, 255, 0));
-			if (((char **)game->map.tab)[row][col] == FLOOR)
-				draw_square(game->mlx, row, col, get_rgb(128, 128, 128));
-			if (((char **)game->map.tab)[row][col] == WALL)
-				draw_square(game->mlx, row, col, get_rgb(0, 0, 0));
-			if (((char **)game->map.tab)[row][col] == EXIT)
-				draw_square(game->mlx, row, col, get_rgb(255, 255, 255));
+			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[0], col * SQUARE, row * SQUARE);
 		}
 	}
-	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
-							game->mlx.img.img_ptr, 0, 0);
 }

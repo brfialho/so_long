@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:47:36 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:21:28 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,22 +105,15 @@ typedef struct s_pos
 	size_t	col;
 }	t_pos;
 
-typedef struct s_mlx_img
-{
-	void	*img_ptr;
-	char	*addr;
-	int		bits_per_pixel;
-	int		size_line;
-	int		endian;
-}	t_mlx_img;
-
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_mlx_img	img;
-	int			height;
-	int			width;
+	void		*img[1];
+	int			total_height;
+	int			total_width;
+	int			img_height;
+	int			img_width;
 	int			key_is_pressed[ASCII];
 }	t_mlx;
 
@@ -171,9 +164,7 @@ int		init_mlx_display(t_mlx *mlx);
 
 // Display
 void	display_moves(t_game *game);
-void	draw_square(t_mlx mlx, int row, int col, t_uint color);
 t_uint	get_rgb(t_uchar r, t_uchar g, t_uchar b);
-void	pixel_put(t_mlx_img *img, int x, int y, t_uint color);
 void	render_image(t_game *game);
 
 // Keys
