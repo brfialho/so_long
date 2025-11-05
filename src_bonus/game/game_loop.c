@@ -75,6 +75,7 @@ int	game_loop(t_game *game)
 	all_key_release(game);
 	handle_monsters(game);
 	render_image(game);
+	display_moves(game);
 	ft_usleep(10000);
 	return (0);
 }

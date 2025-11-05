@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:00:43 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:03:57 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ void	render_image(t_game *game)
 	}
 	mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
 							game->mlx.img.img_ptr, 0, 0);
-	display_moves(game);
 }
