@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:48:25 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	find_monsters(t_game *game)
 	{
 		j = -1;
 		while (++j < (int)game->map.cols)
-			if (((char **)game->map.tab)[i][j] == ENEMY)
+			if (((char **)game->map.tab)[i][j] == MONSTER)
 				game->monster[m++].pos = (t_pos){i, j};
 	}
 }

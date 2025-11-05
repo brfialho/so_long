@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:54:52 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	render_image(t_game *game)
 				render_enviroment(game, tile, col * SQUARE, row * SQUARE);
 			if (tile == QUEST)
 				render_quest(game, col * SQUARE, row * SQUARE);
-			if (((char **)game->map.tab)[row][col] == ENEMY)
+			if (((char **)game->map.tab)[row][col] == MONSTER)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M], col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == PLAYER)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[P], col * SQUARE, row * SQUARE);

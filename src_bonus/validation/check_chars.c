@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:12:40 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:43:55 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_chars(t_tab *map, t_chr_cnt *obj)
 		obj->c_count += ft_str_charcount((const char *)map->tab[i], QUEST);
 		obj->e_count += ft_str_charcount((const char *)map->tab[i], EXIT);
 		obj->p_count += ft_str_charcount((const char *)map->tab[i], PLAYER);
-		obj->x_count += ft_str_charcount((const char *)map->tab[i], ENEMY);
+		obj->x_count += ft_str_charcount((const char *)map->tab[i], MONSTER);
 		i++;
 	}
 	if (!valid_count(*obj))

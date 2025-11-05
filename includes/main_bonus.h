@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:53:54 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:56:02 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 #  define QUEST 'C'
 # endif
 
-# ifndef ENEMY
-#  define ENEMY 'X'
+# ifndef MONSTER
+#  define MONSTER 'X'
 # endif
 
 # ifndef FLOOR

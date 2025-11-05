@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:46:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 20:29:24 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	move_player(t_game *game, t_pos next_pos)
 	if (next_tile == QUEST)
 		game->obj.c_count--;
 	if ((next_tile == EXIT && !game->obj.c_count)
-		|| (next_tile == ENEMY && ft_printf ("\n\n ### GAME OVER ###\n\n")))
+		|| (next_tile == MONSTER && ft_printf ("\n\n ### GAME OVER ###\n\n")))
 		destroy_game(game);
 	((char **)game->map.tab)[next_pos.row][next_pos.col] = PLAYER;
 	((char **)game->map.tab)[game->player.row][game->player.col] = FLOOR;
