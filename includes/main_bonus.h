@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 16:21:28 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:40:20 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@
 #  define SPEED 40
 # endif
 
+# ifndef TEXTURES
+#  define TEXTURES 6
+# endif
+
 typedef enum e_error
 {
 	MEMORY,
@@ -90,6 +94,16 @@ typedef enum e_direction
 	LEFT = 4
 }	t_direction;
 
+typedef enum e_texture
+{
+	E,
+	F,
+	W,
+	Q,
+	M_D,
+	P_D
+}	t_texture;
+
 // Structs
 typedef struct s_chr_cnt
 {
@@ -109,7 +123,7 @@ typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	void		*img[1];
+	void		*img[TEXTURES];
 	int			total_height;
 	int			total_width;
 	int			img_height;
@@ -158,7 +172,8 @@ int		game_loop(t_game *game);
 
 // Init / Destroy
 int		destroy_game(t_game *game);
-int		destroy_mlx(t_mlx *mlx, int win, int img);
+void	destroy_img(t_mlx *mlx);
+void	destroy_mlx(t_mlx *mlx);
 void	init_game(t_game *game);
 int		init_mlx_display(t_mlx *mlx);
 

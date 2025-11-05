@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:26:21 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 20:52:12 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 18:48:34 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	destroy_game(t_game *game)
 {
-	if (game->mlx.mlx_ptr)
-		destroy_mlx(&game->mlx, TRUE, TRUE);
+	destroy_img(&game->mlx);
+	destroy_mlx(&game->mlx);
 	if (game->monster)
 		free(game->monster);
 	ft_tab_free_content(&game->map);
