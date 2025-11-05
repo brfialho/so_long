@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 18:40:20 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:27:51 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # endif
 
 # ifndef TEXTURES
-#  define TEXTURES 6
+#  define TEXTURES 12
 # endif
 
 typedef enum e_error
@@ -100,8 +100,14 @@ typedef enum e_texture
 	F,
 	W,
 	Q,
-	M_D,
-	P_D
+	Q_U,
+	Q_D,
+	M,
+	M_L,
+	M_R,
+	P,
+	P_L,
+	P_R
 }	t_texture;
 
 // Structs
@@ -175,6 +181,7 @@ int		destroy_game(t_game *game);
 void	destroy_img(t_mlx *mlx);
 void	destroy_mlx(t_mlx *mlx);
 void	init_game(t_game *game);
+int		init_img(t_mlx *mlx);
 int		init_mlx_display(t_mlx *mlx);
 
 // Display

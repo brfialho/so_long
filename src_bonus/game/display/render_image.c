@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 18:39:30 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:32:09 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	render_image(t_game *game)
 			if (((char **)game->map.tab)[row][col] == QUEST)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q], col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == ENEMY)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M_D], col * SQUARE, row * SQUARE);
+			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M], col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == PLAYER)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[P_D], col * SQUARE, row * SQUARE);
+			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[P], col * SQUARE, row * SQUARE);
 		}
 	}
 }

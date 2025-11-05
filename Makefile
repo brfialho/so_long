@@ -61,6 +61,7 @@ BONUS_SRC = src_bonus/main.c \
 		src_bonus/game/init_destroy/destroy_mlx.c \
 		src_bonus/game/init_destroy/init_game.c \
 		src_bonus/game/init_destroy/init_mlx_display.c \
+		src_bonus/game/init_destroy/init_img.c \
 		src_bonus/game/keys/all_key_release.c \
 		src_bonus/game/keys/handle_keys.c \
 		src_bonus/game/keys/key_press.c \
