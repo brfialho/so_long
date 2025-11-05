@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:36:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:38:38 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:46:30 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ static t_pos	get_ramdom_move(t_pos next)
 {
 	int	min;
 	int	max;
-	int ramdom;
+	int	ramdom;
 
 	min = 1;
 	max = 4;
-
 	ramdom = (rand() % (max - min + 1)) + min;
 	if (ramdom == 1)
 		return ((t_pos){next.row - 1, next.col});

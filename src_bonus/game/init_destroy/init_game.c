@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 21:03:00 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:44:57 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	find_monsters(t_game *game)
 {
 	int	i;
 	int	j;
-	int m;
+	int	m;
 
 	m = 0;
 	i = -1;

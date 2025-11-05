@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:12:40 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/03 21:47:02 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/04 21:43:55 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_chars(t_tab *map, t_chr_cnt *obj)
 
 static int	valid_count(t_chr_cnt obj)
 {
-	if (obj.c_count < 1 
+	if (obj.c_count < 1
 		|| obj.x_count < 1
 		|| obj.e_count != 1
 		|| obj.p_count != 1)
