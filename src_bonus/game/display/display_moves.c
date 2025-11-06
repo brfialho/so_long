@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:00:32 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 16:11:02 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:09:39 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	display_moves(t_game *game)
 	if (!msg)
 		destroy_game(game);
 	mlx_string_put(game->mlx.mlx_ptr, game->mlx.win_ptr, \
-					SQUARE, SQUARE / 2, get_rgb(0, 255, 0), msg);
+					SQUARE, SQUARE / 2, 0x00FF00, msg);
 	free(msg);
 }

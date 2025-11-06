@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:44:57 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:10:13 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,6 @@ int		init_mlx_display(t_mlx *mlx);
 
 // Display
 void	display_moves(t_game *game);
-t_uint	get_rgb(t_uchar r, t_uchar g, t_uchar b);
 void	render_image(t_game *game);
 
 // Keys
