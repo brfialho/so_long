@@ -1,12 +1,11 @@
 /* XPM */
-static char *quest_down1762382287[] = {
+static char *quest_down1762461524[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 2 1 ",
 "  c #CA9C00",
 ". c white",
 /* pixels */
 "................................",
-".                              .",
 ".                              .",
 ".                              .",
 ".                              .",
@@ -31,6 +30,7 @@ static char *quest_down1762382287[] = {
 ".   .. ..          ..  .  ..   .",
 ".                   ..   ..    .",
 ".                    .....     .",
+".                              .",
 ".                              .",
 ".                              .",
 ".                              .",
