@@ -6,15 +6,15 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:35:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:36:52 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:44:44 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
-static void	set_monster(t_game *game, t_pos_monster pos);
+static void	set_monster(t_game *game, t_pos_move pos);
 
-void	move_monster(t_game *game, t_pos_monster next_pos, int i)
+void	move_monster(t_game *game, t_pos_move next_pos, int i)
 {
 	char	next_tile;
 	t_pos	monster_pos;
@@ -39,7 +39,7 @@ void	move_monster(t_game *game, t_pos_monster next_pos, int i)
 	game->monster[i].pos = (t_pos){next_pos.row, next_pos.col};
 }
 
-static void	set_monster(t_game *game, t_pos_monster pos)
+static void	set_monster(t_game *game, t_pos_move pos)
 {
 	if (pos.direction == LEFT)
 		((char **)game->map.tab)[pos.row][pos.col] = MONSTER_LEFT;

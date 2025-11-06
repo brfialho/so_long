@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:26:41 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:44:57 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # ifndef PLAYER_RIGHT
 #  define PLAYER_RIGHT 'R'
 # endif
-
 
 # ifndef PLAYER_SET
 #  define PLAYER_SET "LPR"
@@ -154,12 +153,12 @@ typedef struct s_pos
 	size_t	col;
 }	t_pos;
 
-typedef struct s_pos_monster
+typedef struct s_pos_move
 {
-	size_t	row;
-	size_t	col;
-	t_direction direction;
-}	t_pos_monster;
+	size_t		row;
+	size_t		col;
+	t_direction	direction;
+}	t_pos_move;
 
 typedef struct s_mlx
 {
@@ -236,7 +235,7 @@ void	count_frame(t_game *game);
 void	game_over(t_game *game);
 void	handle_monsters(t_game *game);
 void	move_player(t_game *game, t_pos next_pos, t_direction direction);
-void	move_monster(t_game *game, t_pos_monster next_pos, int i);
+void	move_monster(t_game *game, t_pos_move next_pos, int i);
 
 // Utils
 void	ft_usleep(long usec);
