@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:58:37 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 21:07:13 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # endif
 
 # ifndef PLAYER_SET
-#  define PLAYER_SET 'LPR'
+#  define PLAYER_SET "LPR"
 # endif
 
 # ifndef EXIT
@@ -47,8 +47,16 @@
 #  define MONSTER 'X'
 # endif
 
-# ifndef MONSTER_set
-#  define MONSTER_set 'AXD'
+# ifndef MONSTER_LEFT
+#  define MONSTER_LEFT 'A'
+# endif
+
+# ifndef MONSTER_RIGHT
+#  define MONSTER_RIGHT 'D'
+# endif
+
+# ifndef MONSTER_SET
+#  define MONSTER_SET "AXD"
 # endif
 
 # ifndef FLOOR

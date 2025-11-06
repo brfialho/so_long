@@ -6,13 +6,14 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 21:06:54 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
 static void	render_enviroment(t_game *game, char tile, int col, int row);
+static void	render_monster(t_game *game, char tile, int col, int row);
 static void	render_quest(t_game *game, int col, int row);
 
 void	render_image(t_game *game)
@@ -32,8 +33,8 @@ void	render_image(t_game *game)
 				render_enviroment(game, tile, col * SQUARE, row * SQUARE);
 			if (tile == QUEST)
 				render_quest(game, col * SQUARE, row * SQUARE);
-			if (((char **)game->map.tab)[row][col] == MONSTER)
-			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M], col * SQUARE, row * SQUARE);
+			if (ft_strchr(MONSTER_SET, tile))
+				render_monster(game, tile, col * SQUARE, row * SQUARE);
 			if (((char **)game->map.tab)[row][col] == PLAYER)
 			mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[P], col * SQUARE, row * SQUARE);
 		}
@@ -57,4 +58,14 @@ static void	render_quest(t_game *game, int col, int row)
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q_U], col, row);
 	else
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[Q], col, row);
+}
+
+static void	render_monster(t_game *game, char tile, int col, int row)
+{
+	if (tile == MONSTER)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M], col, row);
+	if (tile == MONSTER_LEFT)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M_L], col, row);
+	if (tile == MONSTER_RIGHT)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, game->mlx.img[M_R], col, row);
 }
