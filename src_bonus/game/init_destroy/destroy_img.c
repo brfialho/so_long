@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 18:21:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 18:50:48 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:19:36 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	destroy_img(t_mlx *mlx)
 	i = -1;
 	while (++i < TEXTURES)
 		if (mlx->img[i])
-			mlx_destroy_image(mlx->mlx_ptr ,mlx->img[i]);
+			mlx_destroy_image(mlx->mlx_ptr, mlx->img[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:46:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 21:20:52 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:23:00 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,3 @@ static void	set_player(t_game *game, t_pos pos, t_direction direction)
 	else
 		((char **)game->map.tab)[pos.row][pos.col] = PLAYER;
 }
-
