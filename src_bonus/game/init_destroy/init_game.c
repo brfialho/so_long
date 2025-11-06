@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 18:24:55 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:32:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	mutate_monsters(t_game *game)
 	while (++i < (int)game->obj.x_count)
 		if (!((game->monster[i].pos.row + game->monster[i].pos.col) % 3))
 		{
-			game->monster[i].type = 1;
-			((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = 'Z';
+			game->monster[i].type = CRAZY;
+			((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = CRAZY;
 		}
 		else 
-			game->monster[i].type = 0;
+			game->monster[i].type = MONSTER;
 }
