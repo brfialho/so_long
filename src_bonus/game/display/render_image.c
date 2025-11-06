@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 21:11:09 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:13:09 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	render_image(t_game *game)
 				render_monster(game, tile, col * SQUARE, row * SQUARE);
 			if (ft_strchr(PLAYER_SET, tile))
 				render_player(game, tile, col * SQUARE, row * SQUARE);
+			display_moves(game);
 		}
 	}
 }
