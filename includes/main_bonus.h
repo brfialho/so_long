@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 17:28:17 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:59:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ typedef struct s_mlx
 typedef struct s_monster
 {
 	t_pos	pos;
+	int		type;
 	int		quest_eaten;
 }	t_monster;
 

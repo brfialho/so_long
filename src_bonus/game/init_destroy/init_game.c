@@ -6,13 +6,14 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:25:47 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:24:55 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
 static void	find_monsters(t_game *game);
+static void mutate_monsters(t_game *game);
 
 void	init_game(t_game *game)
 {
@@ -29,6 +30,7 @@ void	init_game(t_game *game)
 	if (!game->monster)
 		destroy_game(game);
 	find_monsters(game);
+	mutate_monsters(game);
 }
 
 static void	find_monsters(t_game *game)
@@ -46,4 +48,19 @@ static void	find_monsters(t_game *game)
 			if (((char **)game->map.tab)[i][j] == MONSTER)
 				game->monster[m++].pos = (t_pos){i, j};
 	}
+}
+
+void	mutate_monsters(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < (int)game->obj.x_count)
+		if (!((game->monster[i].pos.row + game->monster[i].pos.col) % 3))
+		{
+			game->monster[i].type = 1;
+			((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = 'Z';
+		}
+		else 
+			game->monster[i].type = 0;
 }
