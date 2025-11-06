@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 20:21:09 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 17:51:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:30:58 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,15 @@ static void	int_monster_img(t_mlx *mlx)
 										&mlx->img_width, &mlx->img_height);
 	mlx->img[M_R] = mlx_xpm_file_to_image(mlx->mlx_ptr, \
 										"assets/monster_right.xpm", \
+										&mlx->img_width, &mlx->img_height);
+	mlx->img[Z] = mlx_xpm_file_to_image(mlx->mlx_ptr, \
+										"assets/crazy.xpm", \
+										&mlx->img_width, &mlx->img_height);
+	mlx->img[Z_L] = mlx_xpm_file_to_image(mlx->mlx_ptr, \
+										"assets/crazy_left.xpm", \
+										&mlx->img_width, &mlx->img_height);
+	mlx->img[Z_R] = mlx_xpm_file_to_image(mlx->mlx_ptr, \
+										"assets/crazy_right.xpm", \
 										&mlx->img_width, &mlx->img_height);
 }
 

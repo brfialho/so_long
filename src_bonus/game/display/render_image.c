@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:42:39 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:21:23 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:30:36 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,15 @@ static void	render_monster(t_game *game, char tile, int col, int row)
 	if (tile == MONSTER_RIGHT)
 		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
 								game->mlx.img[M_R], col, row);
+	if (tile == CRAZY)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+								game->mlx.img[Z], col, row);
+	if (tile == CRAZY_LEFT)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+								game->mlx.img[Z_L], col, row);
+	if (tile == CRAZY_RIGHT)
+		mlx_put_image_to_window(game->mlx.mlx_ptr, game->mlx.win_ptr, \
+								game->mlx.img[Z_R], col, row);
 }
 
 static void	render_player(t_game *game, char tile, int col, int row)

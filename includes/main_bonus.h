@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 17:59:58 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:30:03 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,20 @@
 #  define MONSTER_RIGHT 'D'
 # endif
 
+# ifndef CRAZY
+#  define CRAZY 'Z'
+# endif
+
+# ifndef CRAZY_LEFT
+#  define CRAZY_LEFT 'V'
+# endif
+
+# ifndef CRAZY_RIGHT
+#  define CRAZY_RIGHT 'B'
+# endif
+
 # ifndef MONSTER_SET
-#  define MONSTER_SET "AXD"
+#  define MONSTER_SET "AXDZVB"
 # endif
 
 # ifndef FLOOR
@@ -92,7 +104,7 @@
 # endif
 
 # ifndef TEXTURES
-#  define TEXTURES 12
+#  define TEXTURES 15
 # endif
 
 # ifndef FRAME_MAX
@@ -133,6 +145,9 @@ typedef enum e_texture
 	M,
 	M_L,
 	M_R,
+	Z,
+	Z_L,
+	Z_R,
 	P,
 	P_L,
 	P_R
