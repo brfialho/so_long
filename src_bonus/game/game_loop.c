@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:44:12 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:15:00 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:28:08 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	game_loop(t_game *game)
 {
-	handle_keys(game);
+	handle_player(game);
 	all_key_release(game);
 	handle_monsters(game);
 	render_image(game);

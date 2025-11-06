@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 17:10:13 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:28:17 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void	render_image(t_game *game);
 
 // Keys
 void	all_key_release(t_game *game);
-void	handle_keys(t_game *game);
+void	handle_player(t_game *game);
 int		key_press(int keycode, t_game *game);
 
 // Logic
