@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:27:02 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 18:30:38 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 17:05:20 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	init_mlx_display(t_mlx *mlx)
 					mlx->mlx_ptr, \
 					mlx->total_width, \
 					mlx->total_height, \
-					"True So Long!");
+					"Square Kingdom");
 	if (!mlx->win_ptr)
 		return (FALSE);
 	return (TRUE);
