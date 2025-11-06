@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:35:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 21:31:19 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 16:26:26 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	move_monster(t_game *game, t_pos_monster next_pos, int i)
 		return ;
 	if (next_tile == QUEST || game->monster[i].quest_eaten)
 		game->monster[i].quest_eaten++;
-	if (ft_strchr(PLAYER_SET, next_tile) && ft_printf ("\n\n ### GAME OVER ###\n\n"))
-		destroy_game(game);
+	if (ft_strchr(PLAYER_SET, next_tile))
+		game_over(game);
 	set_monster(game, next_pos);
 	((char **)game->map.tab)[game->monster[i].pos.row][game->monster[i].pos.col] = FLOOR;
 	if (pos_cmp(game->monster[i].pos, game->exit))
