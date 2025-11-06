@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 21:07:13 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 21:10:53 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@
 # ifndef PLAYER
 #  define PLAYER 'P'
 # endif
+
+# ifndef PLAYER_LEFT
+#  define PLAYER_LEFT 'L'
+# endif
+
+# ifndef PLAYER_RIGHT
+#  define PLAYER_RIGHT 'R'
+# endif
+
 
 # ifndef PLAYER_SET
 #  define PLAYER_SET "LPR"
