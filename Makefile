@@ -55,9 +55,7 @@ BONUS_SRC = src_bonus/main.c \
 		src_bonus/validation/map_validator.c \
 		src_bonus/game/display/display_moves.c \
 		src_bonus/game/display/render_image.c \
-		src_bonus/game/init_destroy/destroy_game.c \
-		src_bonus/game/init_destroy/destroy_img.c \
-		src_bonus/game/init_destroy/destroy_mlx.c \
+		src_bonus/game/init_destroy/destroy.c \
 		src_bonus/game/init_destroy/init_game.c \
 		src_bonus/game/init_destroy/init_mlx_display.c \
 		src_bonus/game/init_destroy/init_img.c \
