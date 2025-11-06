@@ -6,13 +6,15 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:46:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/05 20:56:33 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/05 21:20:52 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
-void	move_player(t_game *game, t_pos next_pos)
+static void	set_player(t_game *game, t_pos pos, t_direction direction);
+
+void	move_player(t_game *game, t_pos next_pos, t_direction e_direction)
 {
 	char		next_tile;
 
@@ -22,12 +24,23 @@ void	move_player(t_game *game, t_pos next_pos)
 	if (next_tile == QUEST)
 		game->obj.c_count--;
 	if ((next_tile == EXIT && !game->obj.c_count)
-		|| (next_tile == MONSTER && ft_printf ("\n\n ### GAME OVER ###\n\n")))
+		|| (ft_strchr(MONSTER_SET, next_tile) && ft_printf ("\n\n ### GAME OVER ###\n\n")))
 		destroy_game(game);
-	((char **)game->map.tab)[next_pos.row][next_pos.col] = PLAYER;
+	set_player(game, next_pos, e_direction);
 	((char **)game->map.tab)[game->player.row][game->player.col] = FLOOR;
 	if (pos_cmp(game->player, game->exit))
 		((char **)game->map.tab)[game->player.row][game->player.col] = EXIT;
 	game->player = next_pos;
 	game->moves++;
 }
+
+static void	set_player(t_game *game, t_pos pos, t_direction direction)
+{
+	if (direction == LEFT)
+		((char **)game->map.tab)[pos.row][pos.col] = PLAYER_LEFT;
+	else if (direction == RIGHT)
+		((char **)game->map.tab)[pos.row][pos.col] = PLAYER_RIGHT;
+	else
+		((char **)game->map.tab)[pos.row][pos.col] = PLAYER;
+}
+
