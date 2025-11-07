@@ -1,8 +1,8 @@
 CC = cc -Werror -Wextra -Wall
 
-MLX_INCLUDES = -Imlx/
+MLX_INCLUDES = -Ilibs/mlx/
 
-LIBFT_INCLUDES = -Ilibft/headers/
+LIBFT_INCLUDES = -Ilibs/libft/headers/
 
 SOLONG_INCLUDES = -Iincludes/
 
@@ -77,10 +77,10 @@ endif
 O_DIR = obj/
 OBJ = $(SRC:%.c=$(O_DIR)%.o)
 
-LIBPATH = libft/
+LIBPATH = libs/libft/
 LIBFT= $(LIBPATH)libft.a
 
-LIBMLX_PATH = mlx/
+LIBMLX_PATH = libs/mlx/
 LIBMLX = $(LIBMLX_PATH)libmlx_Linux.a
 
 NAME = so_long
