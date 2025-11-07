@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/07 13:20:22 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:16:12 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,5 +263,6 @@ void	move_monster(t_game *game, t_pos_move next_pos, int i);
 // Utils
 void	ft_usleep(long usec);
 int		pos_cmp(t_pos first, t_pos second);
+int		get_cheapest(int *moves);
 
 #endif

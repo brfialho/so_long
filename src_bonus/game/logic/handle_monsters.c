@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:36:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/07 16:35:06 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:21:07 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	handle_monsters(t_game *game)
 			move_monster(game, get_ramdom_move(game->monster[i].pos), i);
 		else if (game->monster[i].type == CRAZY && !(cooldown % (SPEED / 10)))
 			move_monster(game, get_follow_move(game, game->monster[i].pos), i);
-
 }
 
 static t_pos_move	get_ramdom_move(t_pos next)
@@ -53,9 +52,9 @@ static t_pos_move	get_ramdom_move(t_pos next)
 
 static t_pos_move	get_follow_move(t_game *game, t_pos next)
 {
-	t_tab tab;
-	int tmp;
-	int opt[4];
+	t_tab	tab;
+	int 	cheapest;
+	int		opt[4];
 	
 	ft_tab_init_alloc(&tab, game->map.rows, game->map.cols, sizeof(int));
 	if (!tab.tab && printf ("\nInsuficient Memory\n"))
@@ -64,15 +63,7 @@ static t_pos_move	get_follow_move(t_game *game, t_pos next)
 	prepare_matrix(((char **)game->map.tab), ((int **)tab.tab));
 	((int **)tab.tab)[next.row][next.col] = -10;
 
-	ft_split_print(((char **)game->map.tab));
 	calculate_path_costs(((int **)tab.tab), game->player.row, game->player.col, 1);
-
-	for (int y = 0; y < (int)tab.rows; y++)
-	{
-		printf ("\n");
-		for(int x = 0; x < (int)tab.cols; x++)
-			printf ("%+d ", ((int **)tab.tab)[y][x]);
-	}
 
 	opt[0] = ((int **)tab.tab)[next.row - 1][next.col];
 	opt[1] = ((int **)tab.tab)[next.row][next.col + 1];
@@ -80,17 +71,14 @@ static t_pos_move	get_follow_move(t_game *game, t_pos next)
 	opt[3] = ((int **)tab.tab)[next.row][next.col - 1];
 
 	ft_tab_free_content(&tab);
-	tmp = INT_MAX;
-	for (int i = 0; i < 4; i++)
-		if (opt[i] > 0 && opt[i] < tmp)
-			tmp = opt[i];
+	cheapest = get_cheapest(opt);
 	
-	printf ("\n \ntmp: %d OPTS: %d %d %d %d\n", tmp, opt[0], opt[1], opt[2], opt[3]);
-	if (opt[0] == tmp)
+
+	if (opt[0] == cheapest)
 		return ((t_pos_move){next.row - 1, next.col, UP});
-	else if (opt[1] == tmp)
+	else if (opt[1] == cheapest)
 		return ((t_pos_move){next.row, next.col + 1, RIGHT});
-	else if (opt[2] == tmp)
+	else if (opt[2] == cheapest)
 		return ((t_pos_move){next.row + 1, next.col, DOWN});
 	else
 		return ((t_pos_move){next.row, next.col - 1, LEFT});

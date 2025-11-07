@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:39:13 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/04 17:21:07 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:16:17 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,19 @@ void	ft_usleep(long usec)
 int	pos_cmp(t_pos first, t_pos second)
 {
 	return (first.row == second.row && first.col == second.col);
+}
+
+int	get_cheapest(int *moves)
+{
+	int	tmp;
+	int	i;
+
+	tmp = INT_MAX;
+	i = -1;
+	while (++i < 4)
+		if (moves[i] > 0 && moves[i] < tmp)
+			tmp = moves[i];
+	if (tmp == INT_MIN)
+		return (-1);
+	return (tmp);
 }
