@@ -6,15 +6,16 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:36:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 22:31:55 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:35:06 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main_bonus.h"
 
 static t_pos_move	get_ramdom_move(t_pos next);
-
 static t_pos_move	get_follow_move(t_game *game, t_pos next);
+static int			calculate_path_costs(int **map, int row, int col, int steps);
+static void			prepare_matrix(char **map, int **tab);
 
 void	handle_monsters(t_game *game)
 {
@@ -48,40 +49,6 @@ static t_pos_move	get_ramdom_move(t_pos next)
 	if (ramdom == 3)
 		return ((t_pos_move){next.row + 1, next.col, DOWN});
 	return ((t_pos_move){next.row, next.col - 1, LEFT});
-}
-int	calculate_path_costs(int **map, int row, int col, int steps)
-{
-	if (map[row][col] != 0)
-		return (FALSE);
-	map[row][col] = steps++;
-	if (calculate_path_costs(map, row - 1, col, steps)
-		|| calculate_path_costs(map, row, col + 1, steps)
-		|| calculate_path_costs(map, row + 1, col, steps)
-		|| calculate_path_costs(map, row, col - 1, steps))
-		return (TRUE);
-	return (FALSE);
-}
-
-
-
-
-static void	prepare_matrix(char **map, int **tab)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (ft_strchr("1AXDZVB", map[i][j]))
-				tab[i][j] = -1;
-			if (ft_strchr("CEP0", map[i][j]))
-				tab[i][j] = 0;
-		}
-	}
 }
 
 static t_pos_move	get_follow_move(t_game *game, t_pos next)
@@ -128,3 +95,36 @@ static t_pos_move	get_follow_move(t_game *game, t_pos next)
 	else
 		return ((t_pos_move){next.row, next.col - 1, LEFT});
 }
+
+static void	prepare_matrix(char **map, int **tab)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (ft_strchr("1AXDZVB", map[i][j]))
+				tab[i][j] = -1;
+			if (ft_strchr("CEP0", map[i][j]))
+				tab[i][j] = 0;
+		}
+	}
+}
+
+static int	calculate_path_costs(int **map, int row, int col, int steps)
+{
+	if (map[row][col] != 0)
+		return (FALSE);
+	map[row][col] = steps++;
+	if (calculate_path_costs(map, row - 1, col, steps)
+		|| calculate_path_costs(map, row, col + 1, steps)
+		|| calculate_path_costs(map, row + 1, col, steps)
+		|| calculate_path_costs(map, row, col - 1, steps))
+		return (TRUE);
+	return (FALSE);
+}
+
