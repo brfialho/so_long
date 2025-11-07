@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:35:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 18:38:13 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:06:54 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	move_monster(t_game *game, t_pos_move next_pos, int m)
 
 static void	set_monster(t_game *game, t_pos_move pos, int m)
 {
-	int type;
+	int	type;
 
 	type = game->monster[m].type;
 	if (pos.direction == LEFT && type == MONSTER)

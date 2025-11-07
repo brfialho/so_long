@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:36:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/07 17:21:07 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 18:11:32 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_pos_move	get_ramdom_move(t_pos next);
 static t_pos_move	get_follow_move(t_game *game, t_pos next);
-static int			calculate_path_costs(int **map, int row, int col, int steps);
+static int			calc_path_costs(int **map, int row, int col, int steps);
 static void			prepare_matrix(char **map, int **tab);
 
 void	handle_monsters(t_game *game)
@@ -26,10 +26,12 @@ void	handle_monsters(t_game *game)
 		cooldown = 1;
 	i = -1;
 	while (++i < (int)game->obj.x_count)
+	{
 		if (game->monster[i].type == MONSTER && !(cooldown % (SPEED / 4)))
 			move_monster(game, get_ramdom_move(game->monster[i].pos), i);
 		else if (game->monster[i].type == CRAZY && !(cooldown % (SPEED / 10)))
 			move_monster(game, get_follow_move(game, game->monster[i].pos), i);
+	}
 }
 
 static t_pos_move	get_ramdom_move(t_pos next)
@@ -53,32 +55,27 @@ static t_pos_move	get_ramdom_move(t_pos next)
 static t_pos_move	get_follow_move(t_game *game, t_pos next)
 {
 	t_tab	tab;
-	int 	cheapest;
-	int		opt[4];
-	
+	int		cheapest;
+	int		move[4];
+
 	ft_tab_init_alloc(&tab, game->map.rows, game->map.cols, sizeof(int));
 	if (!tab.tab && printf ("\nInsuficient Memory\n"))
 		destroy_game(game);
-		
 	prepare_matrix(((char **)game->map.tab), ((int **)tab.tab));
 	((int **)tab.tab)[next.row][next.col] = -10;
-
-	calculate_path_costs(((int **)tab.tab), game->player.row, game->player.col, 1);
-
-	opt[0] = ((int **)tab.tab)[next.row - 1][next.col];
-	opt[1] = ((int **)tab.tab)[next.row][next.col + 1];
-	opt[2] = ((int **)tab.tab)[next.row + 1][next.col];
-	opt[3] = ((int **)tab.tab)[next.row][next.col - 1];
-
+	calc_path_costs(((int **)tab.tab), \
+						game->player.row, game->player.col, 1);
+	move[0] = ((int **)tab.tab)[next.row - 1][next.col];
+	move[1] = ((int **)tab.tab)[next.row][next.col + 1];
+	move[2] = ((int **)tab.tab)[next.row + 1][next.col];
+	move[3] = ((int **)tab.tab)[next.row][next.col - 1];
 	ft_tab_free_content(&tab);
-	cheapest = get_cheapest(opt);
-	
-
-	if (opt[0] == cheapest)
+	cheapest = get_cheapest(move);
+	if (move[0] == cheapest)
 		return ((t_pos_move){next.row - 1, next.col, UP});
-	else if (opt[1] == cheapest)
+	else if (move[1] == cheapest)
 		return ((t_pos_move){next.row, next.col + 1, RIGHT});
-	else if (opt[2] == cheapest)
+	else if (move[2] == cheapest)
 		return ((t_pos_move){next.row + 1, next.col, DOWN});
 	else
 		return ((t_pos_move){next.row, next.col - 1, LEFT});
@@ -103,16 +100,15 @@ static void	prepare_matrix(char **map, int **tab)
 	}
 }
 
-static int	calculate_path_costs(int **map, int row, int col, int steps)
+static int	calc_path_costs(int **map, int row, int col, int steps)
 {
 	if (map[row][col] != 0)
 		return (FALSE);
 	map[row][col] = steps++;
-	if (calculate_path_costs(map, row - 1, col, steps)
-		|| calculate_path_costs(map, row, col + 1, steps)
-		|| calculate_path_costs(map, row + 1, col, steps)
-		|| calculate_path_costs(map, row, col - 1, steps))
+	if (calc_path_costs(map, row - 1, col, steps)
+		|| calc_path_costs(map, row, col + 1, steps)
+		|| calc_path_costs(map, row + 1, col, steps)
+		|| calc_path_costs(map, row, col - 1, steps))
 		return (TRUE);
 	return (FALSE);
 }
-
