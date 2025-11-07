@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 18:30:03 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 21:35:21 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 40
+#  define SPEED 120
 # endif
 
 # ifndef TEXTURES
@@ -205,6 +205,14 @@ typedef struct s_game
 	int			frame;
 	int			moves;
 }	t_game;
+
+typedef struct s_follow
+{
+	int	u;
+	int	r;
+	int	d;
+	int	l;	
+}	t_follow;
 
 //Functions
 
