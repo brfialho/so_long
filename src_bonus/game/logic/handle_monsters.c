@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 21:36:14 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 21:36:08 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/06 22:31:55 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	handle_monsters(t_game *game)
 	while (++i < (int)game->obj.x_count)
 		if (game->monster[i].type == MONSTER && !(cooldown % (SPEED / 4)))
 			move_monster(game, get_ramdom_move(game->monster[i].pos), i);
-		else if (game->monster[i].type == CRAZY && !(cooldown % (SPEED / 3)))
+		else if (game->monster[i].type == CRAZY && !(cooldown % (SPEED / 10)))
 			move_monster(game, get_follow_move(game, game->monster[i].pos), i);
 
 }
