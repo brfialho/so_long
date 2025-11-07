@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 21:35:21 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/07 13:20:22 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 120
+#  define SPEED 210
 # endif
 
 # ifndef TEXTURES
