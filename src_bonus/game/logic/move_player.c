@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:46:27 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 16:58:53 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:50:55 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	move_player(t_game *game, t_pos next_pos, t_direction e_direction)
 		return ;
 	game->moves++;
 	if (next_tile == QUEST)
+	{
 		game->obj.c_count--;
+		game->collected++;
+	}
 	if (next_tile == EXIT && !game->obj.c_count)
 		destroy_game(game);
 	if (ft_strchr(MONSTER_SET, next_tile))

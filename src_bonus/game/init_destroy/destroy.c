@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:26:21 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/06 17:23:25 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/22 13:00:16 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	destroy_game(t_game *game)
 	if (game->monster)
 		free(game->monster);
 	ft_tab_free_content(&game->map);
-	ft_printf("\nFinal Score: %d\nThanks for Playing !!\n", (int)game->moves);
+	ft_printf("\nKeys Collected: %d/%d\nMove Count: %d\n\nThanks for Playing !!\n", \
+		game->collected, game->collected + game->obj.c_count, (int)game->moves);
 	exit(0);
 }
 

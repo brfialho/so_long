@@ -6,7 +6,7 @@
 /*   By: brfialho <brfialho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:12:58 by brfialho          #+#    #+#             */
-/*   Updated: 2025/11/07 17:16:12 by brfialho         ###   ########.fr       */
+/*   Updated: 2025/11/22 12:48:49 by brfialho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ typedef struct s_game
 	t_pos		exit;
 	t_chr_cnt	obj;
 	t_monster	*monster;
+	int			collected;
 	int			frame;
 	int			moves;
 }	t_game;
