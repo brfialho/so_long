@@ -7,7 +7,7 @@
 
 ---
 
-# So Long - Square kingdom
+# So Long - Square Kingdom
 
 This is a 2D tile-based game where you control a square. The objective is to collect all items on the map and then reach the exit.
 The project is split into two versions. The basic one which handles player movement, collectibles, and exit conditions. The complete one, with additional gameplay and visual features
